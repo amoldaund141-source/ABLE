@@ -41,9 +41,9 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">NSS Unit Member</p>
                 </div>
                 <ul id="vol-menu">
-                    <li><a class="tab-link active" data-tab="tab-nearby" style="cursor:pointer;"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
-                    <li><a class="tab-link" data-tab="tab-history" style="cursor:pointer;"><span class="material-symbols-outlined">history</span> My History</a></li>
-                    <li><a class="tab-link" data-tab="tab-certificate" style="cursor:pointer;"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
+                    <li><a href="#" class="tab-link active" onclick="switchVolTab(event, 'tab-nearby', this)"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchVolTab(event, 'tab-history', this)"><span class="material-symbols-outlined">history</span> My History</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchVolTab(event, 'tab-certificate', this)"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
                 </ul>
             </aside>
 
@@ -120,20 +120,13 @@
     </script>
 
     <script>
-        
-        // Attach click listeners to all tab links
-        document.addEventListener("DOMContentLoaded", function() {
-            var tabLinks = document.querySelectorAll('.tab-link');
-            for (var i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].addEventListener('click', function(e) {
-                    e.preventDefault();
-                    var target = this.getAttribute('data-tab');
-                    switchVolTab(target, this);
-                });
-            }
+
+}
         });
     
-        function switchVolTab(tabId, el) {
+        function switchVolTab(event, tabId, el) {
+            if(event) event.preventDefault();
+            console.log("Switching to tab: " + tabId);
             var allLinks = document.querySelectorAll('#vol-menu a');
             for (var i = 0; i < allLinks.length; i++) {
                 allLinks[i].classList.remove('active');
