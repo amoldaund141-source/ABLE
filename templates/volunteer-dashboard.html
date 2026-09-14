@@ -41,9 +41,9 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">NSS Unit Member</p>
                 </div>
                 <ul id="vol-menu">
-                    <li><a href="#" class="active" onclick="switchVolTab(event, 'tab-nearby')"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
-                    <li><a href="#" onclick="switchVolTab(event, 'tab-history')"><span class="material-symbols-outlined">history</span> My History</a></li>
-                    <li><a href="#" onclick="switchVolTab(event, 'tab-certificate')"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
+                    <li><a href="javascript:void(0);" class="active" onclick="switchVolTab('tab-nearby', this)"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchVolTab('tab-history', this)"><span class="material-symbols-outlined">history</span> My History</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchVolTab('tab-certificate', this)"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
                 </ul>
             </aside>
 
@@ -120,11 +120,18 @@
     </script>
 
     <script>
-        function switchVolTab(event, tabId) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('#vol-menu a').forEach(a => a.classList.remove('active'));
-            if (event && event.currentTarget) event.currentTarget.classList.add('active');
-            document.querySelectorAll('.vol-tab').forEach(tab => tab.style.display = 'none');
+        function switchVolTab(tabId, el) {
+            var allLinks = document.querySelectorAll('#vol-menu a');
+            for (var i = 0; i < allLinks.length; i++) {
+                allLinks[i].classList.remove('active');
+            }
+            if (el) el.classList.add('active');
+            
+            var allTabs = document.querySelectorAll('.vol-tab');
+            for (var j = 0; j < allTabs.length; j++) {
+                allTabs[j].style.display = 'none';
+            }
+            
             var selectedTab = document.getElementById(tabId);
             if (selectedTab) selectedTab.style.display = 'block';
         }

@@ -45,8 +45,8 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">Community Member</p>
                 </div>
                 <ul id="user-menu">
-                    <li><a href="#" class="active" onclick="switchUserTab(event, 'tab-active')"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
-                    <li><a href="#" onclick="switchUserTab(event, 'tab-history')"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
+                    <li><a href="javascript:void(0);" class="active" onclick="switchUserTab('tab-active', this)"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchUserTab('tab-history', this)"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
                 </ul>
             </aside>
 
@@ -121,11 +121,18 @@
     </script>
 
     <script>
-        function switchUserTab(event, tabId) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('#user-menu a').forEach(a => a.classList.remove('active'));
-            if (event && event.currentTarget) event.currentTarget.classList.add('active');
-            document.querySelectorAll('.user-tab').forEach(tab => tab.style.display = 'none');
+        function switchUserTab(tabId, el) {
+            var allLinks = document.querySelectorAll('#user-menu a');
+            for (var i = 0; i < allLinks.length; i++) {
+                allLinks[i].classList.remove('active');
+            }
+            if (el) el.classList.add('active');
+            
+            var allTabs = document.querySelectorAll('.user-tab');
+            for (var j = 0; j < allTabs.length; j++) {
+                allTabs[j].style.display = 'none';
+            }
+            
             var selectedTab = document.getElementById(tabId);
             if (selectedTab) selectedTab.style.display = 'block';
         }

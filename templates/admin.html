@@ -87,10 +87,10 @@
             <nav aria-label="Main Navigation">
                 <ul id="admin-top-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-dashboard')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-requests')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-volunteers')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-reports')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
+                    <li><a href="javascript:void(0);" class="active" onclick="switchAdminTab('tab-dashboard', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-requests', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-volunteers', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-reports', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
                     <li><a href="index.html" style="color: #ef4444;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">logout</span> Logout</a></li>
                 </ul>
                 <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -105,12 +105,12 @@
             <aside class="sidebar">
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">Menu</h3>
                 <ul id="admin-menu">
-                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-dashboard')"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-requests')"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-reports')"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-volunteers')"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-directory')"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-settings')"><span class="material-symbols-outlined">settings</span> Settings</a></li>
+                    <li><a href="javascript:void(0);" class="active" onclick="switchAdminTab('tab-dashboard', this)"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-requests', this)"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-reports', this)"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-volunteers', this)"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-directory', this)"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
+                    <li><a href="javascript:void(0);" onclick="switchAdminTab('tab-settings', this)"><span class="material-symbols-outlined">settings</span> Settings</a></li>
                 </ul>
             </aside>
 
@@ -368,34 +368,37 @@
     </script>
 
     <script>
-        function switchAdminTab(event, tabId) {
-            if (event) {
-                event.preventDefault();
-            }
-
+        function switchAdminTab(tabId, el) {
             // Remove active class from all links in both menus
-            document.querySelectorAll('#admin-menu a, #admin-top-nav a').forEach(a => a.classList.remove('active'));
+            var allLinks = document.querySelectorAll('#admin-menu a, #admin-top-nav a');
+            for (var i = 0; i < allLinks.length; i++) {
+                allLinks[i].classList.remove('active');
+            }
             
             // Add active class to the clicked link
-            if(event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
+            if (el) {
+                el.classList.add('active');
             }
 
             // Helper to safely add class
             function addActive(selector) {
-                var el = document.querySelector(selector);
-                if (el) el.classList.add('active');
+                var elem = document.querySelector(selector);
+                if (elem) elem.classList.add('active');
             }
 
             // Sync the active class based on the tabId
             if (tabId === 'tab-dashboard') {
                 addActive('#admin-menu li:nth-child(1) a');
+                addActive('#admin-top-nav li:nth-child(2) a');
             } else if (tabId === 'tab-requests') {
                 addActive('#admin-menu li:nth-child(2) a');
+                addActive('#admin-top-nav li:nth-child(3) a');
             } else if (tabId === 'tab-reports') {
                 addActive('#admin-menu li:nth-child(3) a');
+                addActive('#admin-top-nav li:nth-child(5) a');
             } else if (tabId === 'tab-volunteers') {
                 addActive('#admin-menu li:nth-child(4) a');
+                addActive('#admin-top-nav li:nth-child(4) a');
             } else if (tabId === 'tab-directory') {
                 addActive('#admin-menu li:nth-child(5) a');
             } else if (tabId === 'tab-settings') {
@@ -403,9 +406,10 @@
             }
 
             // Hide all tabs
-            document.querySelectorAll('.admin-tab').forEach(tab => {
-                tab.style.display = 'none';
-            });
+            var allTabs = document.querySelectorAll('.admin-tab');
+            for (var j = 0; j < allTabs.length; j++) {
+                allTabs[j].style.display = 'none';
+            }
 
             // Show selected tab
             var selectedTab = document.getElementById(tabId);
