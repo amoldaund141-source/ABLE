@@ -105,10 +105,10 @@
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">Menu</h3>
                 <ul>
                     <li><a href="#" class="active"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
-                    <li><a href="#"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
-                    <li><a href="#"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
-                    <li><a href="#"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
-                    <li><a href="#"><span class="material-symbols-outlined">settings</span> Settings</a></li>
+                    <li><a href="#" onclick="showNotification('Loading Reports...', 'Fetching latest crowdsourced physical barrier reports from the database.', 'report', '#f59e0b'); return false;"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
+                    <li><a href="#" onclick="showNotification('Volunteer Roster', 'Opening volunteer dispatch and management interface.', 'group', '#3b82f6'); return false;"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
+                    <li><a href="#" onclick="showNotification('Updating Directory', 'Opening the verified accessibility directory editor.', 'place', '#10b981'); return false;"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
+                    <li><a href="#" onclick="showNotification('System Settings', 'Opening system configuration and access control.', 'settings', '#64748b'); return false;"><span class="material-symbols-outlined">settings</span> Settings</a></li>
                 </ul>
             </aside>
 
