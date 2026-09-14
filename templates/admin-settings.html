@@ -87,7 +87,7 @@
             <nav aria-label="Main Navigation">
                 <ul id="admin-top-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="admin.html" class="tab-link active"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="admin.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
                     <li><a href="admin-requests.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
                     <li><a href="admin-volunteers.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
                     <li><a href="admin-reports.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
@@ -105,19 +105,19 @@
             <aside class="sidebar">
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">Menu</h3>
                 <ul id="admin-menu">
-                    <li><a href="admin.html" class="tab-link active"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="admin.html" class="tab-link "><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
                     <li><a href="admin-requests.html" class="tab-link "><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
                     <li><a href="admin-reports.html" class="tab-link "><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
                     <li><a href="admin-volunteers.html" class="tab-link "><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
                     <li><a href="admin-directory.html" class="tab-link "><span class="material-symbols-outlined">place</span> Update Directory</a></li>
-                    <li><a href="admin-settings.html" class="tab-link "><span class="material-symbols-outlined">settings</span> Settings</a></li>
+                    <li><a href="admin-settings.html" class="tab-link active"><span class="material-symbols-outlined">settings</span> Settings</a></li>
                 </ul>
             </aside>
 
             <!-- Main Dashboard Area -->
             <section id="main-content">
                 <!-- Dashboard Overview Tab -->
-                <div id="tab-dashboard" class="admin-tab">
+                <div id="tab-dashboard" class="admin-tab" style="display: none;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                         <h2>System Overview</h2>
                         <button class="btn" onclick="showNotification('Queue Refreshed', 'The request queue has been synchronized with the live database.', 'refresh', '#2563eb')"><span class="material-symbols-outlined" style="margin-right: 8px;">refresh</span> Refresh Data</button>
@@ -290,7 +290,7 @@
                 </div>
 
                 <!-- Settings Tab -->
-                <div id="tab-settings" class="admin-tab" style="display: none;">
+                <div id="tab-settings" class="admin-tab">
                     <h2>System Settings</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">Configure backend API integrations and system behavior.</p>
                     <div class="card" style="padding: 30px;">

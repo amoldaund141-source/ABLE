@@ -45,13 +45,13 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">Community Member</p>
                 </div>
                 <ul id="user-menu">
-                    <li><a href="user-dashboard.html" class="tab-link active"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
-                    <li><a href="user-history.html" class="tab-link "><span class="material-symbols-outlined">history</span> Past Requests</a></li>
+                    <li><a href="user-dashboard.html" class="tab-link "><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
+                    <li><a href="user-history.html" class="tab-link active"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
                 </ul>
             </aside>
 
             <section id="main-content">
-                <div id="tab-active" class="user-tab">
+                <div id="tab-active" class="user-tab" style="display: none;">
                 <h2 style="margin-bottom: 20px;">Your Active Request (#1042)</h2>
                 <div class="card" style="border-top: 4px solid var(--brand-blue);">
                     <h3>Form Filling Assistance</h3>
@@ -77,7 +77,7 @@
                 </div>
 
                 <!-- History Tab -->
-                <div id="tab-history" class="user-tab" style="display: none;">
+                <div id="tab-history" class="user-tab">
                     <h2>Past Requests History</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">View your previous assistance requests and reports.</p>
                     <div class="card" style="padding: 0; overflow-x: auto;">
