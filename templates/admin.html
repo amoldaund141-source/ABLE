@@ -87,8 +87,8 @@
             <nav aria-label="Main Navigation">
                 <ul id="admin-top-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-assistance')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
-                    <li><a href="#" onclick="switchAdminTab(event, 'tab-assistance')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
+                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-dashboard')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="#" onclick="switchAdminTab(event, 'tab-requests')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
                     <li><a href="#" onclick="switchAdminTab(event, 'tab-volunteers')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
                     <li><a href="#" onclick="switchAdminTab(event, 'tab-reports')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
                     <li><a href="index.html" style="color: #ef4444;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">logout</span> Logout</a></li>
@@ -105,7 +105,8 @@
             <aside class="sidebar">
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">Menu</h3>
                 <ul id="admin-menu">
-                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-assistance')"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
+                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-dashboard')"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="#" onclick="switchAdminTab(event, 'tab-requests')"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
                     <li><a href="#" onclick="switchAdminTab(event, 'tab-reports')"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
                     <li><a href="#" onclick="switchAdminTab(event, 'tab-volunteers')"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
                     <li><a href="#" onclick="switchAdminTab(event, 'tab-directory')"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
@@ -115,32 +116,40 @@
 
             <!-- Main Dashboard Area -->
             <section id="main-content">
-                <div id="tab-assistance" class="admin-tab">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                    <h2>Assistance Requests Queue</h2>
-                    <button class="btn" onclick="showNotification('Queue Refreshed', 'The request queue has been synchronized with the live database.', 'refresh', '#2563eb')"><span class="material-symbols-outlined" style="margin-right: 8px;">refresh</span> Refresh Queue</button>
+                <!-- Dashboard Overview Tab -->
+                <div id="tab-dashboard" class="admin-tab">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2>System Overview</h2>
+                        <button class="btn" onclick="showNotification('Queue Refreshed', 'The request queue has been synchronized with the live database.', 'refresh', '#2563eb')"><span class="material-symbols-outlined" style="margin-right: 8px;">refresh</span> Refresh Data</button>
+                    </div>
+
+                    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 30px; gap: 20px;">
+                        <div class="card" style="padding: 20px;">
+                            <h4 style="color: var(--text-muted); font-size: 0.9rem;">Pending</h4>
+                            <p style="font-size: 2rem; font-weight: 700; color: #b45309;">12</p>
+                        </div>
+                        <div class="card" style="padding: 20px;">
+                            <h4 style="color: var(--text-muted); font-size: 0.9rem;">Active (Dispatched)</h4>
+                            <p style="font-size: 2rem; font-weight: 700; color: #1d4ed8;">4</p>
+                        </div>
+                        <div class="card" style="padding: 20px;">
+                            <h4 style="color: var(--text-muted); font-size: 0.9rem;">Resolved Today</h4>
+                            <p style="font-size: 2rem; font-weight: 700; color: #15803d;">8</p>
+                        </div>
+                    </div>
+
+                    <!-- NEW FEATURE: Live Analytics Chart -->
+                    <div class="card" style="margin-bottom: 40px;">
+                        <h3 style="margin-bottom: 20px;">Assistance Requests by Category (Live Data)</h3>
+                        <canvas id="analyticsChart" height="100"></canvas>
+                    </div>
                 </div>
 
-                <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 30px; gap: 20px;">
-                    <div class="card" style="padding: 20px;">
-                        <h4 style="color: var(--text-muted); font-size: 0.9rem;">Pending</h4>
-                        <p style="font-size: 2rem; font-weight: 700; color: #b45309;">12</p>
+                <!-- Assistance Requests Tab -->
+                <div id="tab-requests" class="admin-tab" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2>All Assistance Requests</h2>
                     </div>
-                    <div class="card" style="padding: 20px;">
-                        <h4 style="color: var(--text-muted); font-size: 0.9rem;">Active (Dispatched)</h4>
-                        <p style="font-size: 2rem; font-weight: 700; color: #1d4ed8;">4</p>
-                    </div>
-                    <div class="card" style="padding: 20px;">
-                        <h4 style="color: var(--text-muted); font-size: 0.9rem;">Resolved Today</h4>
-                        <p style="font-size: 2rem; font-weight: 700; color: #15803d;">8</p>
-                    </div>
-                </div>
-
-                <!-- NEW FEATURE: Live Analytics Chart -->
-                <div class="card" style="margin-bottom: 40px;">
-                    <h3 style="margin-bottom: 20px;">Assistance Requests by Category (Live Data)</h3>
-                    <canvas id="analyticsChart" height="100"></canvas>
-                </div>
 
                 <div style="overflow-x: auto;">
                     <table class="request-table">
@@ -379,16 +388,18 @@
             }
 
             // Sync the active class based on the tabId
-            if (tabId === 'tab-assistance') {
+            if (tabId === 'tab-dashboard') {
                 addActive('#admin-menu li:nth-child(1) a');
-            } else if (tabId === 'tab-reports') {
+            } else if (tabId === 'tab-requests') {
                 addActive('#admin-menu li:nth-child(2) a');
-            } else if (tabId === 'tab-volunteers') {
+            } else if (tabId === 'tab-reports') {
                 addActive('#admin-menu li:nth-child(3) a');
-            } else if (tabId === 'tab-directory') {
+            } else if (tabId === 'tab-volunteers') {
                 addActive('#admin-menu li:nth-child(4) a');
-            } else if (tabId === 'tab-settings') {
+            } else if (tabId === 'tab-directory') {
                 addActive('#admin-menu li:nth-child(5) a');
+            } else if (tabId === 'tab-settings') {
+                addActive('#admin-menu li:nth-child(6) a');
             }
 
             // Hide all tabs
