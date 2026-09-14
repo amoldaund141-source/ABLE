@@ -45,8 +45,8 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">Community Member</p>
                 </div>
                 <ul id="user-menu">
-                    <li><a href="javascript:void(0);" class="active" onclick="switchUserTab('tab-active', this)"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
-                    <li><a href="javascript:void(0);" onclick="switchUserTab('tab-history', this)"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
+                    <li><a class="tab-link active" data-tab="tab-active" style="cursor:pointer;"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
+                    <li><a class="tab-link" data-tab="tab-history" style="cursor:pointer;"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
                 </ul>
             </aside>
 
@@ -121,6 +121,19 @@
     </script>
 
     <script>
+        
+        // Attach click listeners to all tab links
+        document.addEventListener("DOMContentLoaded", function() {
+            var tabLinks = document.querySelectorAll('.tab-link');
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = this.getAttribute('data-tab');
+                    switchUserTab(target, this);
+                });
+            }
+        });
+    
         function switchUserTab(tabId, el) {
             var allLinks = document.querySelectorAll('#user-menu a');
             for (var i = 0; i < allLinks.length; i++) {
