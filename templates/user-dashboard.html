@@ -122,10 +122,12 @@
 
     <script>
         function switchUserTab(event, tabId) {
+            if (event) event.preventDefault();
             document.querySelectorAll('#user-menu a').forEach(a => a.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
             document.querySelectorAll('.user-tab').forEach(tab => tab.style.display = 'none');
-            document.getElementById(tabId).style.display = 'block';
+            var selectedTab = document.getElementById(tabId);
+            if (selectedTab) selectedTab.style.display = 'block';
         }
     </script>
 

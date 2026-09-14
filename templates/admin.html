@@ -360,6 +360,10 @@
 
     <script>
         function switchAdminTab(event, tabId) {
+            if (event) {
+                event.preventDefault();
+            }
+
             // Remove active class from all links in both menus
             document.querySelectorAll('#admin-menu a, #admin-top-nav a').forEach(a => a.classList.remove('active'));
             
@@ -368,17 +372,23 @@
                 event.currentTarget.classList.add('active');
             }
 
+            // Helper to safely add class
+            function addActive(selector) {
+                var el = document.querySelector(selector);
+                if (el) el.classList.add('active');
+            }
+
             // Sync the active class based on the tabId
             if (tabId === 'tab-assistance') {
-                document.querySelector('#admin-menu a:nth-child(1)')?.classList.add('active');
+                addActive('#admin-menu li:nth-child(1) a');
             } else if (tabId === 'tab-reports') {
-                document.querySelector('#admin-menu li:nth-child(2) a')?.classList.add('active');
+                addActive('#admin-menu li:nth-child(2) a');
             } else if (tabId === 'tab-volunteers') {
-                document.querySelector('#admin-menu li:nth-child(3) a')?.classList.add('active');
+                addActive('#admin-menu li:nth-child(3) a');
             } else if (tabId === 'tab-directory') {
-                document.querySelector('#admin-menu li:nth-child(4) a')?.classList.add('active');
+                addActive('#admin-menu li:nth-child(4) a');
             } else if (tabId === 'tab-settings') {
-                document.querySelector('#admin-menu li:nth-child(5) a')?.classList.add('active');
+                addActive('#admin-menu li:nth-child(5) a');
             }
 
             // Hide all tabs
@@ -387,7 +397,10 @@
             });
 
             // Show selected tab
-            document.getElementById(tabId).style.display = 'block';
+            var selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.style.display = 'block';
+            }
         }
     </script>
 
