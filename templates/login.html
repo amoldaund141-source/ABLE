@@ -41,8 +41,22 @@
 
         <section style="display: flex; justify-content: center; padding: 40px 0;">
             <div class="form-container" style="width: 100%; max-width: 450px;">
-                <h2 style="text-align: center; margin-bottom: 24px;">Welcome Back</h2>
+                <h2 id="auth-title" style="text-align: center; margin-bottom: 24px;">Welcome Back</h2>
                 <form id="login-form" action="admin.html">
+                    <div id="register-fields" style="display: none; margin-bottom: 16px;">
+                        <div style="margin-bottom: 16px;">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="E.g., Priya K.">
+                        </div>
+                        <div>
+                            <label for="role-select">I am joining as a:</label>
+                            <select id="role-select" name="role" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-light); background: var(--bg-page); color: var(--text-main); font-size: 1rem;">
+                                <option value="user">Citizen (Needs Assistance)</option>
+                                <option value="volunteer">Volunteer (Wants to Help)</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div style="margin-bottom: 16px;">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" required placeholder="name@example.com">
@@ -55,8 +69,12 @@
                         <input type="password" id="password" name="password" required placeholder="••••••••">
                     </div>
 
-                    <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; padding: 14px;">Sign In</button>
+                    <button type="submit" id="auth-btn" class="btn" style="width: 100%; font-size: 1.1rem; padding: 14px;">Sign In</button>
                 </form>
+
+                <p id="toggle-auth-text" style="text-align: center; margin-top: 20px; font-size: 0.95rem;">
+                    Don't have an account? <a href="#" onclick="toggleAuthMode(); return false;" style="color: var(--brand-blue); font-weight: bold;">Register here</a>
+                </p>
 
                 <div style="margin-top: 30px; border-top: 1px solid var(--border-light); padding-top: 20px;">
                     <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Quick Login (Demo Users)</p>
@@ -111,9 +129,50 @@
             currentRole = role;
         }
 
+        let isLoginMode = true;
+
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            const title = document.getElementById('auth-title');
+            const headerTitle = document.querySelector('.page-header h1');
+            const headerDesc = document.querySelector('.page-header p');
+            const btn = document.getElementById('auth-btn');
+            const toggleText = document.getElementById('toggle-auth-text');
+            const extraFields = document.getElementById('register-fields');
+
+            if(isLoginMode) {
+                title.innerText = "Welcome Back";
+                headerTitle.innerText = "Sign In";
+                headerDesc.innerText = "Access your dashboard to manage requests, update directories, or review community feedback.";
+                btn.innerText = "Sign In";
+                toggleText.innerHTML = `Don't have an account? <a href="#" onclick="toggleAuthMode(); return false;" style="color: var(--brand-blue); font-weight: bold;">Register here</a>`;
+                extraFields.style.display = "none";
+                document.getElementById('name').removeAttribute('required');
+            } else {
+                title.innerText = "Create an Account";
+                headerTitle.innerText = "Join the Community";
+                headerDesc.innerText = "Register to start requesting assistance, volunteering, or improving accessibility in Pune.";
+                btn.innerText = "Complete Registration";
+                toggleText.innerHTML = `Already have an account? <a href="#" onclick="toggleAuthMode(); return false;" style="color: var(--brand-blue); font-weight: bold;">Sign In instead</a>`;
+                extraFields.style.display = "block";
+                document.getElementById('name').setAttribute('required', 'true');
+            }
+        }
+
         document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault(); 
             
+            if(!isLoginMode) {
+                // Mock Registration Logic for Prototype
+                const role = document.getElementById('role-select').value;
+                localStorage.setItem('able_logged_in', 'true');
+                localStorage.setItem('able_role', role);
+                alert("Registration successful! Welcome to the ABLE community.");
+                window.location.href = role === 'volunteer' ? "volunteer-dashboard.html" : "user-dashboard.html";
+                return;
+            }
+
+            // Normal Login Logic
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -127,11 +186,9 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Store session (JWT or simple flag for prototype)
                     localStorage.setItem('able_logged_in', 'true');
                     localStorage.setItem('able_role', data.role);
                     
-                    // Route based on role
                     if (data.role === 'admin') {
                         window.location.href = "admin.html";
                     } else if (data.role === 'volunteer') {
