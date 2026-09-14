@@ -85,12 +85,13 @@
         <div class="nav-container">
             <a href="index.html" class="logo" aria-label="ABLE Home">ABLE</a>
             <nav aria-label="Main Navigation">
-                <ul>
+                <ul id="admin-top-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="admin.html" class="active">Dashboard</a></li>
-                    <li><a href="accessibility.html">Accessibility</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="index.html" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
+                    <li><a href="#" class="active" onclick="switchAdminTab(event, 'tab-assistance')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="#" onclick="switchAdminTab(event, 'tab-assistance')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
+                    <li><a href="#" onclick="switchAdminTab(event, 'tab-volunteers')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
+                    <li><a href="#" onclick="switchAdminTab(event, 'tab-reports')"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
+                    <li><a href="index.html" style="color: #ef4444;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">logout</span> Logout</a></li>
                 </ul>
                 <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
             </nav>
@@ -359,9 +360,26 @@
 
     <script>
         function switchAdminTab(event, tabId) {
-            // Update active class on menu
-            document.querySelectorAll('#admin-menu a').forEach(a => a.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            // Remove active class from all links in both menus
+            document.querySelectorAll('#admin-menu a, #admin-top-nav a').forEach(a => a.classList.remove('active'));
+            
+            // Add active class to the clicked link
+            if(event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
+
+            // Sync the active class based on the tabId
+            if (tabId === 'tab-assistance') {
+                document.querySelector('#admin-menu a:nth-child(1)')?.classList.add('active');
+            } else if (tabId === 'tab-reports') {
+                document.querySelector('#admin-menu li:nth-child(2) a')?.classList.add('active');
+            } else if (tabId === 'tab-volunteers') {
+                document.querySelector('#admin-menu li:nth-child(3) a')?.classList.add('active');
+            } else if (tabId === 'tab-directory') {
+                document.querySelector('#admin-menu li:nth-child(4) a')?.classList.add('active');
+            } else if (tabId === 'tab-settings') {
+                document.querySelector('#admin-menu li:nth-child(5) a')?.classList.add('active');
+            }
 
             // Hide all tabs
             document.querySelectorAll('.admin-tab').forEach(tab => {
