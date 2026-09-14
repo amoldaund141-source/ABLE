@@ -247,19 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Intersection Observer for Scroll Animations ---
-    const scrollElements = document.querySelectorAll('.card, .form-container, .stat-box, section > h2, section > h3, section > p');
     
-    // Add the animate class to elements we want to animate
-    scrollElements.forEach(el => {
+    // Auto-add the animate class to elements we want to animate
+    document.querySelectorAll('.card, .form-container, .stat-box, section > h2, section > h3, section > p').forEach(el => {
         // Don't add to elements already in the animated headers
         if(!el.closest('.hero-org') && !el.closest('.page-header')) {
             el.classList.add('animate-on-scroll');
         }
     });
 
+    // NOW grab all elements that have the class (including hardcoded ones)
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
+
     const elementInView = (el, dividend = 1) => {
         const elementTop = el.getBoundingClientRect().top;
-        return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+        // Trigger as soon as the element enters the bottom of the viewport
+        return (elementTop <= (window.innerHeight || document.documentElement.clientHeight));
     };
 
     const displayScrollElement = (element) => {
