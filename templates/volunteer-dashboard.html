@@ -41,9 +41,9 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">NSS Unit Member</p>
                 </div>
                 <ul id="vol-menu">
-                    <li><a href="#" class="tab-link active" onclick="switchVolTab(event, 'tab-nearby', this)"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchVolTab(event, 'tab-history', this)"><span class="material-symbols-outlined">history</span> My History</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchVolTab(event, 'tab-certificate', this)"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
+                    <li><a href="#" class="tab-link active" onclick="switchVolTab('tab-nearby', this); return false;"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchVolTab('tab-history', this); return false;"><span class="material-symbols-outlined">history</span> My History</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchVolTab('tab-certificate', this); return false;"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
                 </ul>
             </aside>
 
@@ -120,10 +120,9 @@
     </script>
 
     <script>
-        function switchVolTab(event, tabId, el) {
-            if(event) event.preventDefault();
-            console.log("Switching to tab: " + tabId);
-            var allLinks = document.querySelectorAll('#vol-menu a');
+        function switchVolTab(tabId, el) {
+                        console.log("Switching to tab: " + tabId);
+            var allLinks = document.querySelectorAll('#vol-menu a, #vol-top-nav a');
             for (var i = 0; i < allLinks.length; i++) {
                 allLinks[i].classList.remove('active');
             }

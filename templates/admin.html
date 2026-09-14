@@ -87,10 +87,10 @@
             <nav aria-label="Main Navigation">
                 <ul id="admin-top-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#" class="tab-link active" onclick="switchAdminTab(event, 'tab-dashboard', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-requests', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-volunteers', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-reports', this)"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
+                    <li><a href="#" class="tab-link active" onclick="switchAdminTab('tab-dashboard', this); return false;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-requests', this); return false;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">inbox</span> All Requests</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-volunteers', this); return false;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">group</span> Volunteers</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-reports', this); return false;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">analytics</span> Reports</a></li>
                     <li><a href="index.html" style="color: #ef4444;"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.2rem; margin-right: 4px;">logout</span> Logout</a></li>
                 </ul>
                 <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -105,12 +105,12 @@
             <aside class="sidebar">
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">Menu</h3>
                 <ul id="admin-menu">
-                    <li><a href="#" class="tab-link active" onclick="switchAdminTab(event, 'tab-dashboard', this)"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-requests', this)"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-reports', this)"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-volunteers', this)"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-directory', this)"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchAdminTab(event, 'tab-settings', this)"><span class="material-symbols-outlined">settings</span> Settings</a></li>
+                    <li><a href="#" class="tab-link active" onclick="switchAdminTab('tab-dashboard', this); return false;"><span class="material-symbols-outlined">space_dashboard</span> Dashboard</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-requests', this); return false;"><span class="material-symbols-outlined">inbox</span> Assistance Requests</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-reports', this); return false;"><span class="material-symbols-outlined">report</span> Barrier Reports</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-volunteers', this); return false;"><span class="material-symbols-outlined">group</span> Manage Volunteers</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-directory', this); return false;"><span class="material-symbols-outlined">place</span> Update Directory</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchAdminTab('tab-settings', this); return false;"><span class="material-symbols-outlined">settings</span> Settings</a></li>
                 </ul>
             </aside>
 
@@ -366,9 +366,8 @@
     </script>
 
     <script>
-        function switchAdminTab(event, tabId, el) {
-            if(event) event.preventDefault();
-            console.log("Switching to tab: " + tabId);
+        function switchAdminTab(tabId, el) {
+                        console.log("Switching to tab: " + tabId);
             // Remove active class from all links in both menus
             var allLinks = document.querySelectorAll('#admin-menu a, #admin-top-nav a');
             for (var i = 0; i < allLinks.length; i++) {

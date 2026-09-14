@@ -45,8 +45,8 @@
                     <p style="font-size: 0.9rem; color: var(--text-muted);">Community Member</p>
                 </div>
                 <ul id="user-menu">
-                    <li><a href="#" class="tab-link active" onclick="switchUserTab(event, 'tab-active', this)"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
-                    <li><a href="#" class="tab-link" onclick="switchUserTab(event, 'tab-history', this)"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
+                    <li><a href="#" class="tab-link active" onclick="switchUserTab('tab-active', this); return false;"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
+                    <li><a href="#" class="tab-link" onclick="switchUserTab('tab-history', this); return false;"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
                 </ul>
             </aside>
 
@@ -121,9 +121,8 @@
     </script>
 
     <script>
-        function switchUserTab(event, tabId, el) {
-            if(event) event.preventDefault();
-            console.log("Switching to tab: " + tabId);
+        function switchUserTab(tabId, el) {
+                        console.log("Switching to tab: " + tabId);
             var allLinks = document.querySelectorAll('#user-menu a');
             for (var i = 0; i < allLinks.length; i++) {
                 allLinks[i].classList.remove('active');
