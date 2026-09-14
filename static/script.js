@@ -134,18 +134,6 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
 
     // --- A11y Accessibility Widget & SOS Button ---
     document.body.insertAdjacentHTML('beforeend', `
-        <!-- Emergency SOS Button -->
-        <div id="sos-btn" style="position: fixed; bottom: 30px; left: 30px; background-color: #dc2626; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(220, 38, 38, 0.5); cursor: pointer; z-index: 1000; transition: transform 0.3s; animation: pulse 2s infinite;">
-            <span class="material-symbols-outlined" style="font-size: 2.2rem;">sos</span>
-        </div>
-
-        <!-- SOS Cancel Modal -->
-        <div class="mock-modal" id="sos-modal">
-            <span class="material-symbols-outlined" style="font-size: 3rem; color: #dc2626; margin-bottom: 15px;">warning</span>
-            <h3 style="margin-bottom: 10px; color: #dc2626;">EMERGENCY SOS TRIGGERED</h3>
-            <p>Dispatching emergency services to your location in <strong id="sos-timer" style="font-size: 1.5rem;">5</strong> seconds.</p>
-            <button class="btn secondary" style="margin-top: 20px; border-color: #dc2626; color: #dc2626; width: 100%;" onclick="cancelSOS()">CANCEL SOS</button>
-        </div>
 
         <div class="a11y-widget-btn" id="a11y-btn" aria-label="Accessibility Menu">
             <span class="material-symbols-outlined" style="font-size: 2rem;">accessibility_new</span>
@@ -167,33 +155,7 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
         </style>
     `);
 
-    // SOS Logic
-    let sosInterval;
-    document.getElementById('sos-btn').addEventListener('click', () => {
-        let timer = 5;
-        document.getElementById('sos-timer').innerText = timer;
-        document.getElementById('sos-modal').classList.add('active');
-        document.getElementById('form-overlay').classList.add('active');
-        
-        sosInterval = setInterval(() => {
-            timer--;
-            document.getElementById('sos-timer').innerText = timer;
-            if(timer <= 0) {
-                clearInterval(sosInterval);
-                document.getElementById('sos-modal').innerHTML = `
-                    <span class="material-symbols-outlined" style="font-size: 3rem; color: #16a34a; margin-bottom: 15px;">local_police</span>
-                    <h3 style="margin-bottom: 10px;">SOS DISPATCHED</h3>
-                    <p>Emergency responders and nearby NSS volunteers have been alerted with your live GPS location.</p>
-                    <button class="btn" style="margin-top: 20px;" onclick="closeModal(); location.reload();">Close</button>
-                `;
-            }
-        }, 1000);
-    });
 
-    window.cancelSOS = function() {
-        clearInterval(sosInterval);
-        closeModal();
-    }
 
     // Text-to-Speech Logic
     let isSpeaking = false;
