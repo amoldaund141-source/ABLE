@@ -44,13 +44,14 @@
                     <h3 style="margin-top: 10px;">Citizen</h3>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">Community Member</p>
                 </div>
-                <ul>
-                    <li><a href="#" class="active"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
-                    <li><a href="#" onclick="showNotification('Loading History', 'Fetching your past requests from the database...', 'history', '#3b82f6'); return false;"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
+                <ul id="user-menu">
+                    <li><a href="#" class="active" onclick="switchUserTab(event, 'tab-active')"><span class="material-symbols-outlined">pending_actions</span> Active Requests</a></li>
+                    <li><a href="#" onclick="switchUserTab(event, 'tab-history')"><span class="material-symbols-outlined">history</span> Past Requests</a></li>
                 </ul>
             </aside>
 
-            <section>
+            <section id="main-content">
+                <div id="tab-active" class="user-tab">
                 <h2 style="margin-bottom: 20px;">Your Active Request (#1042)</h2>
                 <div class="card" style="border-top: 4px solid var(--brand-blue);">
                     <h3>Form Filling Assistance</h3>
@@ -73,6 +74,37 @@
 
                     <button class="btn secondary" style="margin-top: 20px; color: #dc2626; border-color: #dc2626;" onclick="cancelReq()">Cancel Request</button>
                 </div>
+                </div>
+
+                <!-- History Tab -->
+                <div id="tab-history" class="user-tab" style="display: none;">
+                    <h2>Past Requests History</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">View your previous assistance requests and reports.</p>
+                    <div class="card" style="padding: 0; overflow-x: auto;">
+                        <table class="request-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Date</th>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Type</th>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">August 12, 2026</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Visual Assistance</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span style="color: #10b981; font-weight: bold;">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">July 4, 2026</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Mobility Escort</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span style="color: #10b981; font-weight: bold;">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </section>
         </div>
     </main>
@@ -87,5 +119,15 @@
             window.location.href = "login.html";
         }
     </script>
+
+    <script>
+        function switchUserTab(event, tabId) {
+            document.querySelectorAll('#user-menu a').forEach(a => a.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.querySelectorAll('.user-tab').forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>

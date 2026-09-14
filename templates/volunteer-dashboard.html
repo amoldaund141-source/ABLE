@@ -40,14 +40,15 @@
                     <h3 style="margin-top: 10px;">Volunteer</h3>
                     <p style="font-size: 0.9rem; color: var(--text-muted);">NSS Unit Member</p>
                 </div>
-                <ul>
-                    <li><a href="#" class="active"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
-                    <li><a href="#" onclick="showNotification('Loading History', 'Fetching your volunteer history from the database...', 'history', '#3b82f6'); return false;"><span class="material-symbols-outlined">history</span> My History</a></li>
-                    <li><a href="#" onclick="showNotification('Generating Certificate', 'Compiling your volunteer hours and generating a signed PDF certificate...', 'workspace_premium', '#f59e0b'); return false;"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
+                <ul id="vol-menu">
+                    <li><a href="#" class="active" onclick="switchVolTab(event, 'tab-nearby')"><span class="material-symbols-outlined">map</span> Nearby Requests</a></li>
+                    <li><a href="#" onclick="switchVolTab(event, 'tab-history')"><span class="material-symbols-outlined">history</span> My History</a></li>
+                    <li><a href="#" onclick="switchVolTab(event, 'tab-certificate')"><span class="material-symbols-outlined">workspace_premium</span> Certificate</a></li>
                 </ul>
             </aside>
 
-            <section>
+            <section id="main-content">
+                <div id="tab-nearby" class="vol-tab">
                 <h2 style="margin-bottom: 20px;">Urgent Nearby Requests</h2>
                 <div class="grid">
                     <div class="card">
@@ -61,6 +62,44 @@
                         <button class="btn" onclick="acceptRequest(this)" style="margin-top: 15px; background: #16a34a;">Accept Request</button>
                     </div>
                 </div>
+                </div>
+
+                <!-- History Tab -->
+                <div id="tab-history" class="vol-tab" style="display: none;">
+                    <h2>Volunteer History</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Review the citizens you have helped.</p>
+                    <div class="card" style="padding: 0; overflow-x: auto;">
+                        <table class="request-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Date</th>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Citizen</th>
+                                    <th style="padding: 16px; border-bottom: 1px solid var(--border-light); text-align: left;">Assistance Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Yesterday</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Priya K.</td>
+                                    <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">Campus Navigation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Certificate Tab -->
+                <div id="tab-certificate" class="vol-tab" style="display: none;">
+                    <h2>NSS Volunteer Certificate</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Download your official digitally signed certificate.</p>
+                    <div class="card" style="padding: 40px; text-align: center; border: 2px dashed var(--brand-blue);">
+                        <span class="material-symbols-outlined" style="font-size: 5rem; color: #f59e0b; margin-bottom: 20px;">workspace_premium</span>
+                        <h3 style="margin-bottom: 10px;">Certificate of Appreciation</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 30px;">Awarded for completing 10+ hours of accessibility assistance.</p>
+                        <button class="btn" onclick="showNotification('Downloading', 'Your PDF certificate is being generated...', 'download', '#10b981')"><span class="material-symbols-outlined" style="margin-right: 8px;">download</span> Download PDF</button>
+                    </div>
+                </div>
+
             </section>
         </div>
     </main>
@@ -79,5 +118,15 @@
             window.location.href = "login.html";
         }
     </script>
+
+    <script>
+        function switchVolTab(event, tabId) {
+            document.querySelectorAll('#vol-menu a').forEach(a => a.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.querySelectorAll('.vol-tab').forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>
