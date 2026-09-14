@@ -1,0 +1,529 @@
+--- Extracting from ABLE_Awareness_Assistance_Portal_6_Slides.pptx ---
+Slide 1:
+
+
+
+
+ABLE
+Awareness & Assistance Portal
+Awareness  •  Accessibility  •  Inclusion
+
+
+● Purpose
+A community-focused digital platform for disability awareness, accessibility information and assistance.
+
+
+● For whom?
+Persons with disabilities, families and caregivers, volunteers, and the general public.
+
+
+● Core idea
+Bring useful information, support resources and community participation together in one place.
+ABLE – Awareness & Assistance Portal   •   1/6
+Slide 2:
+
+
+1. Project Overview
+Why ABLE?
+
+
+! The Need
+People may need disability awareness, accessibility information, government schemes, educational resources and help — but these resources can be difficult to find in one place.
+
+
+✓ Main Objective
+Create a single digital platform where people can learn about disabilities, find accessible resources, seek assistance, and contribute towards an inclusive community.
+
+
+• Awareness
+Driving community inclusion through clear disability awareness and actionable etiquette guidelines.
+
+
+• Accessibility
+Providing a trusted directory to easily locate verified accessible facilities and public spaces.
+
+
+• Support
+Assistance, emergency/help resources and community support
+
+
+• Participation
+Mobilizing local volunteers to actively fulfill on-the-ground accessibility requests and audit public spaces.
+ABLE – Awareness & Assistance Portal   •   2/6
+Slide 3:
+
+
+2. Target Users
+Four user groups
+
+Persons with Disabilities
+• Locate verified accessible facilities and infrastructure
+• Request immediate on-demand community assistance
+• Access consolidated government schemes and resources
+• Report local accessibility barriers directly
+
+Families & Caregivers
+• Access targeted rehabilitation and support networks
+• Navigate complex government schemes easily
+•Find specialized educational and caregiving resources
+• Connect with local community assistance programs
+
+Volunteers
+• Fulfill immediate on-the-ground assistance requests
+• Drive local disability awareness campaigns
+• Support individuals navigating physical barriers
+• Contribute skills to community inclusion initiatives
+
+General Public
+• Learn disability etiquette
+• Understand accessibility needs
+• Report accessibility issues
+• Participate in inclusion campaigns
+ABLE – Awareness & Assistance Portal   •   3/6
+Slide 4:
+
+
+3. Website Structure
+8 main sections/pages
+
+
+
+Home
+Clear introduction and quick access
+
+
+
+
+05
+
+06
+
+
+ABLE – Awareness & Assistance Portal   •   4/6
+
+Disability Awareness
+Information across disability categories
+
+Resources & Schemes
+Schemes, education and support resources
+
+Volunteer
+Register and contribute
+
+
+
+
+About Us
+Purpose, background and mission
+
+
+
+Accessibility
+Accessible places and facilities
+Assistance
+Request help from the community
+Report / Feedback
+Report issues and share feedback
+01
+03
+05
+07
+02
+04
+06
+08
+Slide 5:
+
+
+4. Key Website Features
+What users can do
+
+
+⌂ Home Page
+Navigation: Home | About | Awareness | Accessibility | Resources | Assistance | Volunteer | Report. Include a prominent “Get Assistance” button and a clear hero message.
+
+
+▣ Quick Access Cards
+Four quick actions: Accessibility, Resources, Get Assistance, and Become a Volunteer — helping users reach important services quickly.
+
+
+i Disability Awareness
+Use cards for different disability categories, including physical, visual, hearing and intellectual disabilities, with simple explanatory information.
+
+
+♿ Accessibility Around You
+Provide information about accessibility features such as designated accessible parking and wheelchair-accessible ramps/entrances.
+ABLE – Awareness & Assistance Portal   •   5/6
+Slide 6:
+
+
+5. Mission & Expected Impact
+Building inclusion
+
+Our Mission
+To promote equal opportunities, accessibility and inclusion through information, technology and 
+community participation.
+
+
+✓ Better awareness
+Helps users understand disabilities and disability etiquette.
+
+
+✓ Easier access
+Makes accessibility information and resources easier to find.
+
+
+✓ Community support
+Connects people with assistance and volunteer opportunities.
+
+
+✓ Inclusive participation
+Encourages reporting, feedback and inclusion campaigns.
+ABLE brings awareness, accessibility, assistance and community participation together on one platform.
+ABLE – Awareness & Assistance Portal   •   6/6
+--- Extracting from ABLE_Final_Presentation.pptx ---
+Slide 1:
+
+
+ABLE
+Awareness & Assistance Portal
+Awareness  •  Accessibility  •  Inclusion
+Community Engagement Project
+A centralized digital platform for disability awareness, accessible resource discovery, assistance requests and volunteer-driven community support.
+
+Department of Computer Engineering
+Modern College of Engineering, Shivajinagar, Pune
+Final Presentation
+Slide 2:
+
+
+
+1. Problem Statement
+Why ABLE is needed
+ABLE – Awareness & Assistance Portal   •   2/12
+The Gap
+Essential disability support is available, but it is scattered across schemes, offices, websites, NGOs and local networks. ABLE brings it together in one trusted place.
+
+
+Information Fragmentation
+Government schemes, accessibility data and rehabilitation resources are difficult to locate quickly.
+
+
+Physical Barriers
+PwDs may need verified ramps, entrances, parking and other accessible infrastructure details.
+
+
+Assistance Gap
+On-ground help exists in communities, but there is no simple digital dispatch and volunteer flow.
+
+Need: a community-focused digital platform that connects awareness, verified accessibility information, support resources and participation.
+
+Awareness
+
+Accessibility
+
+Support
+
+Inclusion
+Slide 3:
+
+
+
+2. Proposed Solution
+Centralized community ecosystem
+ABLE – Awareness & Assistance Portal   •   3/12
+ABLE is designed as a single portal where users can learn, discover resources, request help, report barriers and contribute through volunteering.
+
+
+Learn
+Awareness modules and disability etiquette.
+
+
+Locate
+Accessible facilities and public places.
+
+
+Request
+Assistance flow for community help.
+
+
+Report
+Feedback and barrier reporting.
+
+Core Idea: Technology + verified information + volunteers = inclusive access for daily life.
+Slide 4:
+
+
+
+3. Project Objectives
+What the portal aims to achieve
+ABLE – Awareness & Assistance Portal   •   4/12
+
+To architect and deploy a centralized digital ecosystem that bridges physical and informational accessibility gaps.
+
+
+Bridge accessibility gaps
+Connect users with reliable information, support resources and community assistance.
+
+
+Empower independent access
+Help users locate schemes, educational material and verified accessible spaces.
+
+
+Mobilize local volunteers
+Enable NSS/student volunteers and community members to respond to assistance needs.
+
+
+Promote social inclusion
+Educate the public and support inclusive participation through awareness campaigns.
+ABLE focuses on practical, local and action-oriented community engagement.
+Slide 5:
+
+
+
+4. Target Users
+Four user groups
+ABLE – Awareness & Assistance Portal   •   5/12
+
+
+Persons with Disabilities
+• Locate verified accessible facilities
+• Request on-demand assistance
+• Access schemes and resources
+• Report local barriers
+
+
+Families & Caregivers
+• Rehabilitation/support networks
+• Specialized education resources
+• Scheme navigation
+• Community assistance programs
+
+
+Volunteers
+• Fulfill assistance requests
+• Support awareness drives
+• Help users facing barriers
+• Contribute local skills
+
+
+General Public
+• Learn disability etiquette
+• Understand access needs
+• Report issues
+• Join inclusion campaigns
+Slide 6:
+
+
+
+5. Website Structure
+8 main sections/pages
+ABLE – Awareness & Assistance Portal   •   6/12
+
+01
+
+
+Home
+Clear introduction and quick access
+
+02
+
+
+About Us
+Purpose, background and mission
+
+03
+
+
+Disability Awareness
+Information across disability categories
+
+04
+
+
+Accessibility
+Accessible places and facilities
+
+05
+
+
+Resources & Schemes
+Schemes, education and support resources
+
+06
+
+
+Assistance
+Request help from the community
+
+07
+
+
+Volunteer
+Register and contribute
+
+08
+
+
+Report / Feedback
+Report issues and share feedback
+
+Simple navigation ensures every user reaches important services quickly.
+Slide 7:
+
+
+
+6. Key Website Features
+What users can do
+ABLE – Awareness & Assistance Portal   •   7/12
+
+
+Home Page & Navigation
+Home | About | Awareness | Accessibility | Resources | Assistance | Volunteer | Report, with a prominent “Get Assistance” action.
+
+
+Quick Access Cards
+Four high-priority actions: Accessibility, Resources, Get Assistance and Become a Volunteer.
+
+
+Disability Awareness
+Simple cards explaining physical, visual, hearing and intellectual disabilities with etiquette guidelines.
+
+
+Accessibility Around You
+Information about ramps, accessible entrances, designated parking and other verified access features.
+
+
+Assistance Request Flow
+Users can request local support, while volunteers can accept and fulfill assistance requests.
+
+
+Report & Feedback
+Users and the public can report barriers and provide feedback for continuous improvement.
+The portal is designed to move users from information → action → community support.
+Slide 8:
+
+
+
+7. User Journey & Workflow
+From need to support
+ABLE – Awareness & Assistance Portal   •   8/12
+
+
+
+
+
+01
+User Need
+Awareness, resource search, barrier report or assistance request
+
+02
+ABLE Portal
+Guides user to the correct module with quick actions
+
+03
+Verification
+Admin/volunteer reviews information and request context
+
+04
+Dispatch
+Registered volunteers coordinate on-ground support
+
+05
+Impact
+Barrier reported, assistance delivered and awareness improved
+
+Every workflow is designed to convert a social accessibility need into a trackable, community-supported action.
+Slide 9:
+
+
+
+8. Technical Infrastructure & Resources
+Zero-budget open-source plan
+ABLE – Awareness & Assistance Portal   •   9/12
+Technical Stack
+
+
+
+Open-source Web Technologies
+HTML5, CSS3 and JavaScript for development, designed to run on free institutional/open-source hosting.
+
+
+Data & Field Tools
+Official circulars, UDID/DEPwD resources and standardized accessibility survey checklists.
+
+
+Administrative Clearances
+College permission letters for authorised surveys in nearby transit and public spaces.
+
+Budget Approach: lightweight web application + free tools + student volunteer network.
+Slide 10:
+
+
+
+9. Stakeholders & Community Engagement
+Who makes ABLE effective
+ABLE – Awareness & Assistance Portal   •   10/12
+ABLE is not only a website — it is a coordinated community engagement model linking institutions, verified sources and volunteers.
+
+
+
+
+
+
+Stakeholder Partners
+PMC Social Welfare Department, NGOs and special educators validate schemes and content.
+
+
+College Support
+Permissions and mentoring for authorised accessibility surveys and community work.
+
+
+ABLE Portal
+Central platform for mapping, awareness, assistance and reports.
+
+
+NSS / Volunteers
+Student volunteers provide on-ground assistance and audit support.
+
+
+Community Users
+PwDs, caregivers and public use, report, request and improve local accessibility.
+Partnerships keep content verified. Volunteers convert requests into real-world support.
+Slide 11:
+
+
+
+10. Expected Outcomes & Impact
+Building inclusion
+ABLE – Awareness & Assistance Portal   •   11/12
+
+ABLE helps transform fragmented support into simple, visible and actionable community access.
+
+
+Reliable accessibility directory
+Crowdsourced and verified public infrastructure details reduce physical barriers.
+
+
+Faster assistance dispatch
+Urgent accessibility needs are linked to registered volunteers for on-ground support.
+
+
+Centralized resources
+Schemes, education materials and rehabilitation networks become easier to navigate.
+
+
+Public inclusion tools
+Awareness education and audit tools help society normalize inclusive behavior.
+Slide 12:
+
+Thank You
+ABLE – Awareness & Assistance Portal
+Awareness • Accessibility • Inclusion
+
+Mission
+To promote equal opportunities, accessibility and inclusion through information, technology and community participation.
+Prepared by: Sanjivani S. Adagale • Vaishnavi S. Angadi • Amol T. Daund • Sarthak B. Gite
+Department of Computer Engineering | Modern College of Engineering, Pune
+
+Community Engagement Project

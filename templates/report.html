@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report & Feedback - ABLE</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="ABLE Home">ABLE</a>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="awareness.html">Awareness</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="assistance.html">Assistance</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="report.html">Report</a></li>
+                
+                    <li><a href="login.html" style="color: var(--brand-blue); font-weight: 700;"><span class="material-symbols-outlined" style="vertical-align: middle;">login</span> Login</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Report an Accessibility Barrier</h1>
+                <p>Help us improve our community infrastructure. Report physical barriers or share feedback about the platform to ensure continuous improvement.</p>
+            </div>
+        </section>
+        <section>
+
+            <div class="form-container">
+                <form id="report-form">
+                    <div style="margin-bottom: 15px;">
+                        <label for="report-type">What are you reporting?</label>
+                        <select id="report-type" name="report-type" required>
+                            <option value="">-- Select --</option>
+                            <option value="barrier">Physical Accessibility Barrier (e.g., broken ramp)</option>
+                            <option value="missing">Missing Information in Directory</option>
+                            <option value="feedback">General Platform Feedback</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="r-location">Location (if applicable)</label>
+                        <input type="text" id="r-location" name="r-location" placeholder="e.g. Pune Station Platform 1">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="r-description">Description</label>
+                        <textarea id="r-description" name="r-description" rows="5" required placeholder="Please describe the barrier or provide your feedback in detail..."></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label for="r-photo">Upload Photo (Optional)</label>
+                        <input type="file" id="r-photo" name="r-photo" accept="image/*" style="border: none; padding: 0;">
+                    </div>
+
+                    <button type="submit" class="btn">Submit Report</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Mega Footer -->
+    <footer class="org-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>ABLE</h2>
+                    <p>Awareness • Accessibility • Inclusion</p>
+                    <p style="font-size: 0.9rem; margin-top: 15px;">A community-focused digital platform engineered to resolve information gaps and physical barriers for Persons with Disabilities.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="awareness.html">Disability Awareness</a></li>
+                        <li><a href="resources.html">Government Schemes</a></li>
+                        <li><a href="report.html">Report a Barrier</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">location_on</span> Shivajinagar, Pune 411005</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">mail</span> support@able-portal.org</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">call</span> +91 800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABLE Community Engagement Project. Developed by Department of Computer Engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').then(reg => {
+            console.log('ServiceWorker registration successful');
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disability Awareness - ABLE</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="ABLE Home">ABLE</a>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="awareness.html">Awareness</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="assistance.html">Assistance</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="report.html">Report</a></li>
+                
+                    <li><a href="login.html" style="color: var(--brand-blue); font-weight: 700;"><span class="material-symbols-outlined" style="vertical-align: middle;">login</span> Login</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Disability Awareness</h1>
+                <p>Driving community inclusion starts with understanding. Explore the categories below to learn basic disability etiquette and how you can foster a more inclusive environment.</p>
+            </div>
+        </section>
+        <section>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Physical Disabilities</h3>
+                    <p>Includes mobility impairments that may require wheelchairs, walkers, or canes.</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; text-align: left;"><strong>Etiquette:</strong> Speak directly to the person, not their companion. Do not lean on or move a person's wheelchair without permission, as it is part of their personal space.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Visual Disabilities</h3>
+                    <p>Includes partial vision loss to complete blindness.</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; text-align: left;"><strong>Etiquette:</strong> Always introduce yourself when approaching. Offer your arm for guidance rather than grabbing theirs. Describe the setting or obstacles clearly.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Hearing Disabilities</h3>
+                    <p>Includes varying degrees of hearing loss or deafness.</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; text-align: left;"><strong>Etiquette:</strong> Ensure you have their attention before speaking. Speak clearly without shouting, and keep your face visible for lip-reading. Use gestures or write if necessary.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Intellectual Disabilities</h3>
+                    <p>Includes conditions affecting cognitive functioning and life skills.</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #eee;">
+                    <p style="font-size: 0.9rem; text-align: left;"><strong>Etiquette:</strong> Treat adults as adults. Use plain language and give the person time to process information and respond. Be patient and listen actively.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Mega Footer -->
+    <footer class="org-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>ABLE</h2>
+                    <p>Awareness • Accessibility • Inclusion</p>
+                    <p style="font-size: 0.9rem; margin-top: 15px;">A community-focused digital platform engineered to resolve information gaps and physical barriers for Persons with Disabilities.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="awareness.html">Disability Awareness</a></li>
+                        <li><a href="resources.html">Government Schemes</a></li>
+                        <li><a href="report.html">Report a Barrier</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">location_on</span> Shivajinagar, Pune 411005</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">mail</span> support@able-portal.org</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">call</span> +91 800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABLE Community Engagement Project. Developed by Department of Computer Engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').then(reg => {
+            console.log('ServiceWorker registration successful');
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+</body>
+
+</html>

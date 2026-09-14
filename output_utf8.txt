@@ -1,0 +1,232 @@
+﻿--- Extracting from ABLE_Awareness_Assistance_Portal_6_Slides.pptx ---
+Slide 1:
+
+
+
+
+ABLE
+Awareness & Assistance Portal
+Awareness  ò  Accessibility  ò  Inclusion
+
+
+Error reading ABLE_Awareness_Assistance_Portal_6_Slides.pptx: 'charmap' codec can't encode character '\u25cf' in position 0: character maps to <undefined>
+--- Extracting from ABLE_Final_Presentation.pptx ---
+Slide 1:
+
+
+ABLE
+Awareness & Assistance Portal
+Awareness  ò  Accessibility  ò  Inclusion
+Community Engagement Project
+A centralized digital platform for disability awareness, accessible resource discovery, assistance requests and volunteer-driven community support.
+
+Department of Computer Engineering
+Modern College of Engineering, Shivajinagar, Pune
+Final Presentation
+Slide 2:
+
+
+
+1. Problem Statement
+Why ABLE is needed
+ABLE û Awareness & Assistance Portal   ò   2/12
+The Gap
+Essential disability support is available, but it is scattered across schemes, offices, websites, NGOs and local networks. ABLE brings it together in one trusted place.
+
+
+Information Fragmentation
+Government schemes, accessibility data and rehabilitation resources are difficult to locate quickly.
+
+
+Physical Barriers
+PwDs may need verified ramps, entrances, parking and other accessible infrastructure details.
+
+
+Assistance Gap
+On-ground help exists in communities, but there is no simple digital dispatch and volunteer flow.
+
+Need: a community-focused digital platform that connects awareness, verified accessibility information, support resources and participation.
+
+Awareness
+
+Accessibility
+
+Support
+
+Inclusion
+Slide 3:
+
+
+
+2. Proposed Solution
+Centralized community ecosystem
+ABLE û Awareness & Assistance Portal   ò   3/12
+ABLE is designed as a single portal where users can learn, discover resources, request help, report barriers and contribute through volunteering.
+
+
+Learn
+Awareness modules and disability etiquette.
+
+
+Locate
+Accessible facilities and public places.
+
+
+Request
+Assistance flow for community help.
+
+
+Report
+Feedback and barrier reporting.
+
+Core Idea: Technology + verified information + volunteers = inclusive access for daily life.
+Slide 4:
+
+
+
+3. Project Objectives
+What the portal aims to achieve
+ABLE û Awareness & Assistance Portal   ò   4/12
+
+To architect and deploy a centralized digital ecosystem that bridges physical and informational accessibility gaps.
+
+
+Bridge accessibility gaps
+Connect users with reliable information, support resources and community assistance.
+
+
+Empower independent access
+Help users locate schemes, educational material and verified accessible spaces.
+
+
+Mobilize local volunteers
+Enable NSS/student volunteers and community members to respond to assistance needs.
+
+
+Promote social inclusion
+Educate the public and support inclusive participation through awareness campaigns.
+ABLE focuses on practical, local and action-oriented community engagement.
+Slide 5:
+
+
+
+4. Target Users
+Four user groups
+ABLE û Awareness & Assistance Portal   ò   5/12
+
+
+Persons with Disabilities
+ò Locate verified accessible facilities
+ò Request on-demand assistance
+ò Access schemes and resources
+ò Report local barriers
+
+
+Families & Caregivers
+ò Rehabilitation/support networks
+ò Specialized education resources
+ò Scheme navigation
+ò Community assistance programs
+
+
+Volunteers
+ò Fulfill assistance requests
+ò Support awareness drives
+ò Help users facing barriers
+ò Contribute local skills
+
+
+General Public
+ò Learn disability etiquette
+ò Understand access needs
+ò Report issues
+ò Join inclusion campaigns
+Slide 6:
+
+
+
+5. Website Structure
+8 main sections/pages
+ABLE û Awareness & Assistance Portal   ò   6/12
+
+01
+
+
+Home
+Clear introduction and quick access
+
+02
+
+
+About Us
+Purpose, background and mission
+
+03
+
+
+Disability Awareness
+Information across disability categories
+
+04
+
+
+Accessibility
+Accessible places and facilities
+
+05
+
+
+Resources & Schemes
+Schemes, education and support resources
+
+06
+
+
+Assistance
+Request help from the community
+
+07
+
+
+Volunteer
+Register and contribute
+
+08
+
+
+Report / Feedback
+Report issues and share feedback
+
+Simple navigation ensures every user reaches important services quickly.
+Slide 7:
+
+
+
+6. Key Website Features
+What users can do
+ABLE û Awareness & Assistance Portal   ò   7/12
+
+
+Home Page & Navigation
+Home | About | Awareness | Accessibility | Resources | Assistance | Volunteer | Report, with a prominent ôGet Assistanceö action.
+
+
+Quick Access Cards
+Four high-priority actions: Accessibility, Resources, Get Assistance and Become a Volunteer.
+
+
+Disability Awareness
+Simple cards explaining physical, visual, hearing and intellectual disabilities with etiquette guidelines.
+
+
+Accessibility Around You
+Information about ramps, accessible entrances, designated parking and other verified access features.
+
+
+Assistance Request Flow
+Users can request local support, while volunteers can accept and fulfill assistance requests.
+
+
+Report & Feedback
+Users and the public can report barriers and provide feedback for continuous improvement.
+Error reading ABLE_Final_Presentation.pptx: 'charmap' codec can't encode character '\u2192' in position 54: character maps to <undefined>

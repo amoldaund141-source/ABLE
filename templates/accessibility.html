@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Directory - ABLE</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="ABLE Home">ABLE</a>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="awareness.html">Awareness</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="assistance.html">Assistance</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="report.html">Report</a></li>
+                
+                    <li><a href="login.html" style="color: var(--brand-blue); font-weight: 700;"><span class="material-symbols-outlined" style="vertical-align: middle;">login</span> Login</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Accessibility Around You</h1>
+                <p>Use our verified crowdsourced directory to find public spaces with accessible infrastructure. We eliminate physical barriers by providing reliable data before you travel.</p>
+            </div>
+        </section>
+        <section>
+            
+            <div class="form-container" style="margin-top: 30px; padding: 24px; max-width: 100%;">
+                <h3 style="margin-bottom: 16px;">Search Accessible Places</h3>
+                <form id="search-accessibility" style="flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0;">
+                    <input type="text" placeholder="Search by location, e.g. Shivajinagar..." style="flex: 1; min-width: 250px; margin: 0;">
+                    <select style="width: auto; min-width: 200px; margin: 0;">
+                        <option value="all">All Features</option>
+                        <option value="ramp">Wheelchair Ramps</option>
+                        <option value="parking">Accessible Parking</option>
+                        <option value="restroom">Accessible Restrooms</option>
+                        <option value="elevator">Elevators</option>
+                    </select>
+                    <button type="submit" class="btn" style="margin: 0;">Search Map</button>
+                </form>
+            </div>
+
+            <!-- Live OpenStreetMap Integration -->
+            <div style="margin-top: 40px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border-light); height: 500px;">
+                <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=73.83056640625001%2C18.513470716492348%2C73.87416839599611%2C18.544400543666572&amp;layer=mapnik&amp;marker=18.52893574971701%2C73.85236740112305" style="border: 0;"></iframe>
+            </div>
+            
+            <div style="text-align: center; margin-top: 15px;">
+                <p style="font-size: 0.9rem; color: var(--text-muted);"><span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.1rem; color: #16a34a;">location_on</span> Live Map Data provided by OpenStreetMap. Displaying verified accessible zones in Pune.</p>
+            </div>
+            
+            <p style="margin-top: 30px; text-align: center;">
+                Can't find a place? <a href="report.html">Report an accessibility barrier</a> to help us update the directory.
+            </p>
+        </section>
+    </main>
+
+    <!-- Professional Mega Footer -->
+    <footer class="org-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>ABLE</h2>
+                    <p>Awareness • Accessibility • Inclusion</p>
+                    <p style="font-size: 0.9rem; margin-top: 15px;">A community-focused digital platform engineered to resolve information gaps and physical barriers for Persons with Disabilities.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="awareness.html">Disability Awareness</a></li>
+                        <li><a href="resources.html">Government Schemes</a></li>
+                        <li><a href="report.html">Report a Barrier</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">location_on</span> Shivajinagar, Pune 411005</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">mail</span> support@able-portal.org</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">call</span> +91 800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABLE Community Engagement Project. Developed by Department of Computer Engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').then(reg => {
+            console.log('ServiceWorker registration successful');
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+</body>
+
+</html>

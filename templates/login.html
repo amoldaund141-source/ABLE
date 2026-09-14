@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ABLE Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="ABLE Home">ABLE</a>
+            <nav aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="awareness.html">Awareness</a></li>
+                    <li><a href="accessibility.html">Accessibility</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="assistance.html">Assistance</a></li>
+                    <li><a href="volunteer.html">Volunteer</a></li>
+                    <li><a href="report.html">Report</a></li>
+                    <li><a href="login.html" class="active" style="color: var(--brand-blue);"><span class="material-symbols-outlined" style="vertical-align: middle;">login</span> Login</a></li>
+                </ul>
+                <button id="theme-toggle" class="btn secondary" style="padding: 8px 12px; margin-left: 15px;"><span class="material-symbols-outlined">dark_mode</span></button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-header">
+            <div class="page-header-content">
+                <h1>Sign In</h1>
+                <p>Access your dashboard to manage requests, update directories, or review community feedback.</p>
+            </div>
+        </section>
+
+        <section style="display: flex; justify-content: center; padding: 40px 0;">
+            <div class="form-container" style="width: 100%; max-width: 450px;">
+                <h2 style="text-align: center; margin-bottom: 24px;">Welcome Back</h2>
+                <form id="login-form" action="admin.html">
+                    <div style="margin-bottom: 16px;">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <label for="password" style="display: flex; justify-content: space-between;">
+                            Password 
+                        </label>
+                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; padding: 14px;">Sign In</button>
+                </form>
+
+                <div style="margin-top: 30px; border-top: 1px solid var(--border-light); padding-top: 20px;">
+                    <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">Quick Login (Demo Users)</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="btn secondary" onclick="fillLogin('admin@able.org', 'admin123', 'admin')">Login as Admin</button>
+                        <button class="btn secondary" onclick="fillLogin('volunteer@nss.org', 'vol123', 'volunteer')">Login as Volunteer</button>
+                        <button class="btn secondary" onclick="fillLogin('user@citizen.org', 'user123', 'user')">Login as Citizen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Mega Footer -->
+    <footer class="org-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>ABLE</h2>
+                    <p>Awareness • Accessibility • Inclusion</p>
+                    <p style="font-size: 0.9rem; margin-top: 15px;">A community-focused digital platform engineered to resolve information gaps and physical barriers for Persons with Disabilities.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="awareness.html">Disability Awareness</a></li>
+                        <li><a href="resources.html">Government Schemes</a></li>
+                        <li><a href="report.html">Report a Barrier</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">location_on</span> Shivajinagar, Pune 411005</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">mail</span> support@able-portal.org</p>
+                    <p><span class="material-symbols-outlined" style="font-size: 1rem; vertical-align: middle;">call</span> +91 800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ABLE Community Engagement Project. Developed by Department of Computer Engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+    <script>
+        let currentRole = 'admin';
+
+        function fillLogin(email, password, role) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+            currentRole = role;
+        }
+
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store session (JWT or simple flag for prototype)
+                    localStorage.setItem('able_logged_in', 'true');
+                    localStorage.setItem('able_role', data.role);
+                    
+                    // Route based on role
+                    if (data.role === 'admin') {
+                        window.location.href = "admin.html";
+                    } else if (data.role === 'volunteer') {
+                        window.location.href = "volunteer-dashboard.html";
+                    } else {
+                        window.location.href = "user-dashboard.html";
+                    }
+                } else {
+                    alert("Login failed: " + data.message);
+                }
+            } catch (err) {
+                console.error("Backend offline:", err);
+                alert("Cannot connect to backend server.");
+            }
+        });
+    </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js').then(reg => {
+            console.log('ServiceWorker registration successful');
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+</body>
+
+</html>
