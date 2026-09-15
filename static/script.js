@@ -23,30 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (userRole === 'admin') {
             navUl.innerHTML = `
                 <li><a href="index.html">Home</a></li>
-                <li><a href="admin.html"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> Dashboard</a></li>
-                <li><a href="#"><span class="material-symbols-outlined" style="vertical-align: middle;">inbox</span> All Requests</a></li>
-                <li><a href="#"><span class="material-symbols-outlined" style="vertical-align: middle;">group</span> Volunteers</a></li>
-                <li><a href="#"><span class="material-symbols-outlined" style="vertical-align: middle;">analytics</span> Reports</a></li>
+                <li><a href="admin.html"><span class="material-symbols-outlined" style="vertical-align: middle;">space_dashboard</span> Dashboard</a></li>
+                <li><a href="admin-requests.html"><span class="material-symbols-outlined" style="vertical-align: middle;">inbox</span> All Requests</a></li>
+                <li><a href="admin-volunteers.html"><span class="material-symbols-outlined" style="vertical-align: middle;">group</span> Volunteers</a></li>
+                <li><a href="admin-reports.html"><span class="material-symbols-outlined" style="vertical-align: middle;">analytics</span> Reports</a></li>
+                <li><a href="admin-directory.html"><span class="material-symbols-outlined" style="vertical-align: middle;">place</span> Directory</a></li>
+                <li><a href="admin-settings.html"><span class="material-symbols-outlined" style="vertical-align: middle;">settings</span> Settings</a></li>
                 <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
-            `;
+`;
         } else if (userRole === 'volunteer') {
             navUl.innerHTML = `
                 <li><a href="index.html">Home</a></li>
                 <li><a href="volunteer-dashboard.html"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> My Dashboard</a></li>
-                <li><a href="#"><span class="material-symbols-outlined" style="vertical-align: middle;">map</span> Available Requests</a></li>
-                <li><a href="#"><span class="material-symbols-outlined" style="vertical-align: middle;">history</span> History</a></li>
+                <li><a href="volunteer-dashboard.html"><span class="material-symbols-outlined" style="vertical-align: middle;">map</span> Nearby Requests</a></li>
+                <li><a href="volunteer-history.html"><span class="material-symbols-outlined" style="vertical-align: middle;">history</span> My History</a></li>
+                <li><a href="volunteer-certificate.html"><span class="material-symbols-outlined" style="vertical-align: middle;">workspace_premium</span> Certificate</a></li>
                 <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
-            `;
+`;
         } else {
             // Standard Citizen/Beneficiary
             navUl.innerHTML = `
                 <li><a href="index.html">Home</a></li>
-                <li><a href="user-dashboard.html"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> Dashboard</a></li>
-                <li><a href="assistance.html"><span class="material-symbols-outlined" style="vertical-align: middle;">health_and_safety</span> Request Help</a></li>
-                <li><a href="report.html"><span class="material-symbols-outlined" style="vertical-align: middle;">report</span> Report Barrier</a></li>
-                <li><a href="accessibility.html"><span class="material-symbols-outlined" style="vertical-align: middle;">accessible</span> Directory Map</a></li>
+                <li><a href="user-dashboard.html"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> Active Requests</a></li>
+                <li><a href="user-history.html"><span class="material-symbols-outlined" style="vertical-align: middle;">history</span> Past Requests</a></li>
+                <li><a href="assistance.html"><span class="material-symbols-outlined" style="vertical-align: middle;">health_and_safety</span> New Request</a></li>
                 <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
-            `;
+`;
         }
         
         // Highlight active link in the new interface
