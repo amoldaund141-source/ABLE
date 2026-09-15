@@ -24,8 +24,8 @@
             <nav>
                 <ul id="main-nav">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="volunteer-dashboard.html" class="tab-link active"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">dashboard</span> My Dashboard</a></li>
-                    <li><a href="volunteer-requests.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">map</span> Nearby Requests</a></li>
+                    <li><a href="volunteer-dashboard.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">dashboard</span> My Dashboard</a></li>
+                    <li><a href="volunteer-requests.html" class="tab-link active"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">map</span> Nearby Requests</a></li>
                     <li><a href="volunteer-history.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">history</span> My History</a></li>
                     <li><a href="volunteer-certificate.html" class="tab-link "><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">workspace_premium</span> Certificate</a></li>
                     <li><a href="#" onclick="logout()" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
@@ -39,35 +39,20 @@
         <div class="dashboard-grid">
 
             <section id="main-content">
-                
-                <div id="tab-dashboard" class="vol-tab">
-                    <h2 style="margin-bottom: 20px;">Volunteer Overview</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                        <div class="card" style="text-align: center;">
-                            <span class="material-symbols-outlined" style="font-size: 3rem; color: #2563eb; margin-bottom: 10px;">volunteer_activism</span>
-                            <h3 style="font-size: 2rem;">14</h3>
-                            <p style="color: var(--text-muted);">Citizens Helped</p>
-                        </div>
-                        <div class="card" style="text-align: center;">
-                            <span class="material-symbols-outlined" style="font-size: 3rem; color: #10b981; margin-bottom: 10px;">schedule</span>
-                            <h3 style="font-size: 2rem;">22</h3>
-                            <p style="color: var(--text-muted);">Hours Logged</p>
-                        </div>
-                        <div class="card" style="text-align: center;">
-                            <span class="material-symbols-outlined" style="font-size: 3rem; color: #f59e0b; margin-bottom: 10px;">military_tech</span>
-                            <h3 style="font-size: 2rem;">Gold</h3>
-                            <p style="color: var(--text-muted);">Current Rank</p>
-                        </div>
-                    </div>
-                    
+                <div id="tab-nearby" class="vol-tab">
+                <h2 style="margin-bottom: 20px;">Urgent Nearby Requests</h2>
+                <div class="grid">
                     <div class="card">
-                        <h3 style="margin-bottom: 15px;">Next Assigned Shift</h3>
-                        <p style="margin-bottom: 8px;"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">calendar_month</span> <strong>Date:</strong> Tomorrow, 10:00 AM - 2:00 PM</p>
-                        <p style="margin-bottom: 8px;"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">location_on</span> <strong>Location:</strong> Pune Railway Station</p>
-                        <p style="margin-bottom: 8px;"><span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 8px;">badge</span> <strong>Role:</strong> General Mobility Assistant</p>
+                        <h3><span class="material-symbols-outlined" style="vertical-align: bottom; color: #dc2626;">emergency</span> Navigation Guide</h3>
+                        <p><strong>Location:</strong> Shivajinagar Bus Stand<br><strong>Distance:</strong> 0.5 km away<br><strong>Details:</strong> Visually impaired user needs help navigating to platform 4.</p>
+                        <button class="btn" onclick="acceptRequest(this)" style="margin-top: 15px; background: #16a34a;">Accept Request</button>
+                    </div>
+                    <div class="card">
+                        <h3><span class="material-symbols-outlined" style="vertical-align: bottom; color: #f59e0b;">accessible</span> Wheelchair Assist</h3>
+                        <p><strong>Location:</strong> Modern College Gate<br><strong>Distance:</strong> 1.2 km away<br><strong>Details:</strong> Need assistance moving up a steep ramp.</p>
+                        <button class="btn" onclick="acceptRequest(this)" style="margin-top: 15px; background: #16a34a;">Accept Request</button>
                     </div>
                 </div>
-
                 </div>
 
                 <!-- History Tab -->
