@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
         
         window.closeModal = function() {
+            document.getElementById('form-modal').style.display = 'none';
+            document.getElementById('form-overlay').style.display = 'none';
             document.getElementById('form-modal').classList.remove('active');
             document.getElementById('form-overlay').classList.remove('active');
         }
