@@ -102,7 +102,7 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
             }
             
             document.getElementById('form-modal-title').innerText = title;
-            document.getElementById('form-modal-text').innerText = text;
+            document.getElementById('form-modal-text').innerHTML = text;
             document.getElementById('form-modal-icon').innerText = icon;
             document.getElementById('form-modal-icon').style.color = color;
             
