@@ -1,0 +1,82 @@
+import re
+
+more_translations = '''const translations = {
+        "Home": "मुख्य पृष्ठ",
+        "About": "आमच्याबद्दल",
+        "Awareness": "जागरूकता",
+        "Accessibility": "सुलभता",
+        "Resources": "संसाधने",
+        "Assistance": "मदत",
+        "Volunteer": "स्वयंसेवक",
+        "Report": "अहवाल द्या",
+        "Login": "लॉगिन",
+        "Dashboard": "डॅशबोर्ड",
+        "Logout": "लॉगआउट",
+        "Report a Barrier": "अडथळ्याची नोंद करा",
+        "Request Help": "मदतीची विनंती",
+        "All Requests": "सर्व विनंत्या",
+        "My Dashboard": "माझा डॅशबोर्ड",
+        "History": "इतिहास",
+        "Nearby Requests": "जवळील विनंत्या",
+        "Certificate": "प्रमाणपत्र",
+        "New Report": "नवीन अहवाल",
+        "Physical Barrier Reports": "शारीरिक अडथळे अहवाल",
+        "System Settings": "सिस्टीम सेटिंग्ज",
+        "Directory": "निर्देशिका",
+        "Volunteers": "स्वयंसेवक",
+        "Reports": "अहवाल",
+        "My History": "माझा इतिहास",
+        "Urgent Nearby Requests": "तातडीच्या जवळील विनंत्या",
+        "Volunteer Overview": "स्वयंसेवक विहंगावलोकन",
+        "Action": "कृती",
+        "View": "पहा",
+        "Dispatch": "पाठवा",
+        "Archive": "संग्रहित करा",
+        "Accept Request": "विनंती स्वीकारा",
+        "Status": "स्थिती",
+        "Location": "स्थान",
+        "Severity": "तीव्रता",
+        "Issue": "समस्या",
+        "Date": "तारीख",
+        "High": "उच्च",
+        "Medium": "मध्यम",
+        "Low": "कमी",
+        "Investigating": "तपासणी सुरू",
+        "Repair Dispatched": "दुरुस्ती पाठवली",
+        "Resolved": "सोडवले",
+        "Dispatched": "पाठवले",
+        "Pending": "प्रलंबित",
+        "Auto-Dispatch Volunteers": "स्वयंसेवकांना स्वयंचलितरित्या पाठवा",
+        "Emergency SMS Broadcasts": "तातडीचे एसएमएस प्रसारण",
+        "Maintenance Mode": "देखभाल मोड",
+        "Data Retention Policy": "डेटा धारणा धोरण",
+        "Twilio SMS Gateway": "ट्विलिओ एसएमएस गेटवे",
+        "OpenStreetMap Sync": "ओपनस्ट्रीटमॅप सिंक",
+        "PostgreSQL Database": "पोस्टग्रेएसक्यूएल डेटाबेस",
+        "Connected": "जोडलेले",
+        "Healthy": "निरोगी",
+        "API Integrations": "एपीआय एकत्रीकरण",
+        "Dispatch & Routing Behavior": "पाठवणे आणि राउटिंग वर्तन",
+        "System Maintenance": "सिस्टम देखभाल",
+        "Configure backend API integrations and system behavior.": "बॅकएंड एपीआय एकत्रीकरण आणि सिस्टम वर्तन कॉन्फिगर करा.",
+        "Today": "आज",
+        "Yesterday": "काल",
+        "Control Panel": "नियंत्रण कक्ष",
+        "Total Users": "एकूण वापरकर्ते",
+        "Active Volunteers": "सक्रिय स्वयंसेवक",
+        "Pending Requests": "प्रलंबित विनंत्या",
+        "Accessibility Score": "सुलभता गुण",
+        "System Activity": "सिस्टम क्रियाकलाप",
+        "Recent Users": "अलीकडील वापरकर्ते",
+        "NSS Volunteer Certificate": "एनएसएस स्वयंसेवक प्रमाणपत्र"
+    };'''
+
+with open('static/script.js', 'r', encoding='utf-8') as f:
+    js = f.read()
+
+# Replace the old translations block again
+js = re.sub(r'const translations = \{.*?\};', more_translations, js, flags=re.DOTALL)
+
+with open('static/script.js', 'w', encoding='utf-8') as f:
+    f.write(js)
+print('Added more translations!')

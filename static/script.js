@@ -278,19 +278,71 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
         "Home": "मुख्य पृष्ठ",
         "About": "आमच्याबद्दल",
         "Awareness": "जागरूकता",
-        "Accessibility": "प्रवेशयोग्यता",
+        "Accessibility": "सुलभता",
         "Resources": "संसाधने",
         "Assistance": "मदत",
         "Volunteer": "स्वयंसेवक",
-        "Report": "अहवाल",
+        "Report": "अहवाल द्या",
         "Login": "लॉगिन",
         "Dashboard": "डॅशबोर्ड",
-        "Logout": "बाहेर पडा",
-        "Report a Barrier": "अडथळा नोंदवा",
-        "Request Help": "मदत मागा",
+        "Logout": "लॉगआउट",
+        "Report a Barrier": "अडथळ्याची नोंद करा",
+        "Request Help": "मदतीची विनंती",
         "All Requests": "सर्व विनंत्या",
         "My Dashboard": "माझा डॅशबोर्ड",
-        "History": "इतिहास"
+        "History": "इतिहास",
+        "Nearby Requests": "जवळील विनंत्या",
+        "Certificate": "प्रमाणपत्र",
+        "New Report": "नवीन अहवाल",
+        "Physical Barrier Reports": "शारीरिक अडथळे अहवाल",
+        "System Settings": "सिस्टीम सेटिंग्ज",
+        "Directory": "निर्देशिका",
+        "Volunteers": "स्वयंसेवक",
+        "Reports": "अहवाल",
+        "My History": "माझा इतिहास",
+        "Urgent Nearby Requests": "तातडीच्या जवळील विनंत्या",
+        "Volunteer Overview": "स्वयंसेवक विहंगावलोकन",
+        "Action": "कृती",
+        "View": "पहा",
+        "Dispatch": "पाठवा",
+        "Archive": "संग्रहित करा",
+        "Accept Request": "विनंती स्वीकारा",
+        "Status": "स्थिती",
+        "Location": "स्थान",
+        "Severity": "तीव्रता",
+        "Issue": "समस्या",
+        "Date": "तारीख",
+        "High": "उच्च",
+        "Medium": "मध्यम",
+        "Low": "कमी",
+        "Investigating": "तपासणी सुरू",
+        "Repair Dispatched": "दुरुस्ती पाठवली",
+        "Resolved": "सोडवले",
+        "Dispatched": "पाठवले",
+        "Pending": "प्रलंबित",
+        "Auto-Dispatch Volunteers": "स्वयंसेवकांना स्वयंचलितरित्या पाठवा",
+        "Emergency SMS Broadcasts": "तातडीचे एसएमएस प्रसारण",
+        "Maintenance Mode": "देखभाल मोड",
+        "Data Retention Policy": "डेटा धारणा धोरण",
+        "Twilio SMS Gateway": "ट्विलिओ एसएमएस गेटवे",
+        "OpenStreetMap Sync": "ओपनस्ट्रीटमॅप सिंक",
+        "PostgreSQL Database": "पोस्टग्रेएसक्यूएल डेटाबेस",
+        "Connected": "जोडलेले",
+        "Healthy": "निरोगी",
+        "API Integrations": "एपीआय एकत्रीकरण",
+        "Dispatch & Routing Behavior": "पाठवणे आणि राउटिंग वर्तन",
+        "System Maintenance": "सिस्टम देखभाल",
+        "Configure backend API integrations and system behavior.": "बॅकएंड एपीआय एकत्रीकरण आणि सिस्टम वर्तन कॉन्फिगर करा.",
+        "Today": "आज",
+        "Yesterday": "काल",
+        "Control Panel": "नियंत्रण कक्ष",
+        "Total Users": "एकूण वापरकर्ते",
+        "Active Volunteers": "सक्रिय स्वयंसेवक",
+        "Pending Requests": "प्रलंबित विनंत्या",
+        "Accessibility Score": "सुलभता गुण",
+        "System Activity": "सिस्टम क्रियाकलाप",
+        "Recent Users": "अलीकडील वापरकर्ते",
+        "NSS Volunteer Certificate": "एनएसएस स्वयंसेवक प्रमाणपत्र"
     };
 
     let currentLang = localStorage.getItem('able_lang') || 'en';
@@ -301,13 +353,13 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
         navContainer.insertAdjacentHTML('beforeend', `
             <button id="lang-toggle" class="btn secondary" style="padding: 6px 10px; margin-left: 10px; font-size: 0.9rem;">
                 <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.1rem; margin-right: 4px;">translate</span> 
-                <span id="lang-text">${currentLang === 'en' ? 'मराठी' : 'English'}</span>
+                <span id="lang-text">${currentLang === \'en\' ? \'मराठी\' : \'English\'}</span>
             </button>
         `);
     }
 
     function applyTranslations() {
-        const elementsToTranslate = document.querySelectorAll('a, button, h1, h2, h3, th');
+        const elementsToTranslate = document.querySelectorAll('a, button, h1, h2, h3, h4, th, td, p, span, div, strong, label, option');
         
         elementsToTranslate.forEach(el => {
             // Only translate nodes that have direct text (ignore icons)
@@ -351,13 +403,13 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
         langToggleBtn.addEventListener('click', () => {
             if (currentLang === 'en') {
                 currentLang = 'mr';
-                document.getElementById('lang-text').innerText = 'English';
             } else {
                 currentLang = 'en';
-                document.getElementById('lang-text').innerText = 'मराठी';
             }
             localStorage.setItem('able_lang', currentLang);
-            applyTranslations();
+            
+            // Force reload to apply clean state, applyTranslations sometimes struggles with dynamic DOM
+            window.location.reload();
         });
     }
 
