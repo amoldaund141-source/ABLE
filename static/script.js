@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="admin-reports.html"><span class="material-symbols-outlined" style="vertical-align: middle;">analytics</span> Reports</a></li>
                 <li><a href="admin-directory.html"><span class="material-symbols-outlined" style="vertical-align: middle;">place</span> Directory</a></li>
                 <li><a href="admin-settings.html"><span class="material-symbols-outlined" style="vertical-align: middle;">settings</span> Settings</a></li>
-                <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
+                <li><a href="#" onclick="localStorage.removeItem('able_logged_in'); localStorage.removeItem('able_role'); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
 `;
         } else if (userRole === 'volunteer') {
             navUl.innerHTML = `
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="volunteer-requests.html"><span class="material-symbols-outlined" style="vertical-align: middle;">map</span> Nearby Requests</a></li>
                 <li><a href="volunteer-history.html"><span class="material-symbols-outlined" style="vertical-align: middle;">history</span> My History</a></li>
                 <li><a href="volunteer-certificate.html"><span class="material-symbols-outlined" style="vertical-align: middle;">workspace_premium</span> Certificate</a></li>
-                <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
+                <li><a href="#" onclick="localStorage.removeItem('able_logged_in'); localStorage.removeItem('able_role'); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
 `;
         } else {
             // Standard Citizen/Beneficiary
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="user-dashboard.html"><span class="material-symbols-outlined" style="vertical-align: middle;">dashboard</span> Active Requests</a></li>
                 <li><a href="user-history.html"><span class="material-symbols-outlined" style="vertical-align: middle;">history</span> Past Requests</a></li>
                 <li><a href="assistance.html"><span class="material-symbols-outlined" style="vertical-align: middle;">health_and_safety</span> New Request</a></li>
-                <li><a href="#" onclick="localStorage.clear(); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
+                <li><a href="#" onclick="localStorage.removeItem('able_logged_in'); localStorage.removeItem('able_role'); window.location.href='index.html';" style="color: #dc2626;"><span class="material-symbols-outlined" style="vertical-align: middle;">logout</span> Logout</a></li>
 `;
         }
         

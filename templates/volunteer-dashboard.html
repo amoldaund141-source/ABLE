@@ -120,7 +120,7 @@
             showNotification("Request Accepted", "Location details and contact info have been sent to your phone.", "volunteer_activism", "#2563eb");
         }
         function logout() {
-            localStorage.clear();
+            localStorage.removeItem('able_logged_in');\n            localStorage.removeItem('able_role');
             window.location.href = "login.html";
         }
     </script>

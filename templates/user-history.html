@@ -106,7 +106,7 @@
             showNotification("Request Cancelled", "Your active request has been removed from the dispatch queue.", "cancel", "#dc2626");
         }
         function logout() {
-            localStorage.clear();
+            localStorage.removeItem('able_logged_in');\n            localStorage.removeItem('able_role');
             window.location.href = "login.html";
         }
     </script>
