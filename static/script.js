@@ -347,18 +347,18 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
 
     let currentLang = localStorage.getItem('able_lang') || 'en';
     
-    // Inject Language Toggle Button into the header
-    const navContainer = document.querySelector('.nav-container');
-    if (navContainer) {
-        navContainer.insertAdjacentHTML('beforeend', `
-            <button id="lang-toggle" class="btn secondary" style="padding: 6px 10px; margin-left: 10px; font-size: 0.9rem;">
-                <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.1rem; margin-right: 4px;">translate</span> 
-                <span id="lang-text">${currentLang === \'en\' ? \'मराठी\' : \'English\'}</span>
-            </button>
-        `);
-    }
+          // Inject Language Toggle Button into the header
+      const navContainer = document.querySelector('.nav-container');
+      if (navContainer) {
+          navContainer.insertAdjacentHTML('beforeend', `
+              <button id="lang-toggle" class="btn secondary" style="padding: 6px 10px; margin-left: 10px; font-size: 0.9rem;">
+                  <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 1.1rem; margin-right: 4px;">translate</span> 
+                  <span id="lang-text">${currentLang === 'en' ? 'मराठी' : 'English'}</span>
+              </button>
+          `);
+      }
 
-    function applyTranslations() {
+function applyTranslations() {
         const elementsToTranslate = document.querySelectorAll('a, button, h1, h2, h3, h4, th, td, p, span, div, strong, label, option');
         
         elementsToTranslate.forEach(el => {
