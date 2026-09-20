@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from flask import Flask, request, jsonify, render_template
+import datetime
 
 # Separate frontend (templates/static) and backend (app.py)
 app = Flask(__name__, static_folder='static', static_url_path='', template_folder='templates')
@@ -18,6 +19,7 @@ def init_db():
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, role TEXT)''')
     c.execute('''CREATE TABLE IF NOT EXISTS requests (id INTEGER PRIMARY KEY, email TEXT, location TEXT, req_type TEXT, status TEXT)''')
+    c.execute('''CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY, email TEXT, location TEXT, issue TEXT, severity TEXT, status TEXT, date TEXT)''')
     
     c.execute("SELECT COUNT(*) FROM users")
     if c.fetchone()[0] == 0:
@@ -73,6 +75,23 @@ def handle_requests():
     reqs = conn.execute("SELECT * FROM requests ORDER BY id DESC").fetchall()
     conn.close()
     return jsonify([dict(r) for r in reqs])
+
+@app.route('/api/reports', methods=['GET', 'POST'])
+def handle_reports():
+    conn = get_db()
+    if request.method == 'POST':
+        data = request.json
+        date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        conn.execute("INSERT INTO reports (email, location, issue, severity, status, date) VALUES (?, ?, ?, ?, 'Investigating', ?)", 
+                     (data.get('email', 'anonymous'), data.get('location'), data.get('issue'), data.get('severity', 'Medium'), date_str))
+        conn.commit()
+        conn.close()
+        return jsonify({"success": True, "message": "Report saved to database."})
+    
+    # GET
+    reps = conn.execute("SELECT * FROM reports ORDER BY id DESC").fetchall()
+    conn.close()
+    return jsonify([dict(r) for r in reps])
 
 @app.route('/api/requests/<int:req_id>/accept', methods=['POST'])
 def accept_request(req_id):
