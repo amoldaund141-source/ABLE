@@ -123,8 +123,19 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
                 showNotification("Scanning...", "Querying OpenStreetMap dataset for verified accessible locations in that area. (Mock Data)", "map", "#3b82f6");
                 return;
             } else if (form.id === 'volunteer-form') {
-                showNotification("Success!", "Registration complete! Welcome to the team. You will receive an email shortly.");
-                form.reset();
+                const formData = new FormData(form);
+                const email = formData.get('email');
+                
+                localStorage.setItem('able_logged_in', 'true');
+                localStorage.setItem('able_role', 'volunteer');
+                if (email) localStorage.setItem('able_email', email);
+                
+                showNotification("Success!", "Registration complete! Welcome to the team. Redirecting to your dashboard...");
+                
+                setTimeout(() => {
+                    window.location.href = 'volunteer-dashboard.html';
+                }, 2000);
+                
                 return;
             }
 
