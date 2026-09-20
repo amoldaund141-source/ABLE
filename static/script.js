@@ -124,17 +124,14 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
                 return;
             } else if (form.id === 'volunteer-form') {
                 const formData = new FormData(form);
-                const email = formData.get('email');
+                const email = formData.get('email') || 'volunteer@nss.org';
                 
-                localStorage.setItem('able_logged_in', 'true');
-                localStorage.setItem('able_role', 'volunteer');
-                if (email) localStorage.setItem('able_email', email);
-                
-                showNotification("Success!", "Registration complete! Welcome to the team. Redirecting to your dashboard...");
+                showNotification("Application Submitted!", "Your volunteer application has been sent to the admins for verification. You will receive an email with your credentials once approved.");
+                form.reset();
                 
                 setTimeout(() => {
-                    window.location.href = 'volunteer-dashboard.html';
-                }, 2000);
+                    window.location.href = 'index.html';
+                }, 3500);
                 
                 return;
             }

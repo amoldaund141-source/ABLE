@@ -251,13 +251,42 @@
                 </div>
 
                 <!-- Volunteers Tab -->
-                <div id="tab-volunteers" class="admin-tab" style="display: none;">
+                                <div id="tab-volunteers" class="admin-tab" style="display: none;">
                     <h2>Manage Volunteers</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">Review and approve NSS volunteer applications.</p>
+                    
+                    <div class="card" style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 15px;">Pending Verifications</h3>
+                        <div class="table-responsive">
+                            <table class="request-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Affiliation</th>
+                                        <th>Contribution Role</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Rahul Deshmukh</td>
+                                        <td>rahul.d@student.org</td>
+                                        <td>NSS Student</td>
+                                        <td>On-ground physical assistance</td>
+                                        <td>
+                                            <button class="btn" style="padding: 6px 12px; font-size: 0.85rem; background: #10b981;" onclick="showNotification('Approved', 'Volunteer verified! Credentials have been automatically emailed to rahul.d@student.org', 'mail', '#10b981'); this.parentElement.parentElement.style.display='none';">Approve & Send Credentials</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
                     <div class="card" style="padding: 40px; text-align: center;">
                         <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--brand-blue); margin-bottom: 10px;">verified_user</span>
-                        <h3 style="margin-bottom: 10px;">All Volunteers Active</h3>
-                        <p style="color: var(--text-muted);">There are no pending applications requiring your approval at this time.</p>
+                        <h3 style="margin-bottom: 10px;">42 Active Volunteers</h3>
+                        <p style="color: var(--text-muted);">All approved volunteers are actively monitored in the central database.</p>
                     </div>
                 </div>
 
