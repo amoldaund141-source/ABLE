@@ -275,7 +275,10 @@
                                         <td>NSS Student</td>
                                         <td>On-ground physical assistance</td>
                                         <td>
-                                            <button class="btn" style="padding: 6px 12px; font-size: 0.85rem; background: #10b981;" onclick="showNotification('Approved', 'Volunteer verified! Credentials have been automatically emailed to rahul.d@student.org', 'mail', '#10b981'); this.parentElement.parentElement.style.display='none';">Approve & Send Credentials</button>
+                                            <div style="display: flex; gap: 8px;">
+                                                <button class="btn secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="showNotification('ID Verification', `<div style='text-align:center; padding: 10px;'><img src='https://images.unsplash.com/photo-1593012891334-0131495c553f?auto=format&fit=crop&q=80&w=200&h=120' style='border-radius:8px; margin-bottom:15px; border: 1px solid var(--border-light);'><br><strong>Rahul Deshmukh</strong><br>ID: NSS-2023-8472<br><span style='color:#10b981; font-weight: bold;'><span class='material-symbols-outlined' style='font-size: 1rem; vertical-align: middle;'>verified</span> Document Scanned & Valid</span></div>`, 'badge', '#3b82f6')">View ID</button>
+                                                <button class="btn" style="padding: 6px 12px; font-size: 0.85rem; background: #10b981; border: none;" onclick="showNotification('Approved', 'Volunteer verified! Credentials have been automatically emailed to rahul.d@student.org', 'mail', '#10b981'); this.parentElement.parentElement.parentElement.style.display='none';">Approve</button>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
