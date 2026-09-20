@@ -101,6 +101,28 @@ def accept_request(req_id):
     conn.close()
     return jsonify({"success": True, "message": "Request accepted and dispatched."})
 
+@app.route('/api/approve_volunteer', methods=['POST'])
+def approve_volunteer():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password', 'vol123') # Default password for newly approved volunteers
+    
+    if not email:
+        return jsonify({"success": False, "message": "Email is required."}), 400
+        
+    conn = get_db()
+    # Check if user already exists
+    existing = conn.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
+    if not existing:
+        conn.execute("INSERT INTO users (email, password, role) VALUES (?, ?, 'volunteer')", (email, password))
+        conn.commit()
+        msg = f"User {email} successfully approved and added to database."
+    else:
+        msg = f"User {email} already exists."
+        
+    conn.close()
+    return jsonify({"success": True, "message": msg})
+
 if __name__ == '__main__':
     print("Starting ABLE Backend Server on http://localhost:5000")
     app.run(host='0.0.0.0', port=5000, debug=True)
