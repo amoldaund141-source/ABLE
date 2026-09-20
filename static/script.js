@@ -481,3 +481,163 @@ window.approveVolunteer = async function(email, btnElement) {
         showNotification('Error', 'Network error connecting to backend.', 'error', '#dc2626');
     }
 };
+
+
+// --- Dynamic Data Fetching ---
+async function loadDynamicData() {
+    // Admin & User Requests
+    const reqTbody = document.getElementById('admin-requests-tbody') || document.getElementById('user-requests-tbody');
+    if (reqTbody) {
+        try {
+            const res = await fetch('/api/requests');
+            const data = await res.json();
+            reqTbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                reqTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No requests found.</td></tr>';
+            } else {
+                data.forEach(req => {
+                    const statusClass = req.status === 'Pending' ? 'status-pending' : (req.status === 'Dispatched' ? 'status-active' : 'status-resolved');
+                    
+                    let actionBtn = '';
+                    if (req.status === 'Pending' && document.getElementById('admin-requests-tbody')) {
+                        actionBtn = `<button class="btn secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="dispatchRequest(${req.id}, this)">Dispatch</button>`;
+                    } else if (req.status === 'Dispatched') {
+                        actionBtn = `<span style="color: var(--text-muted); font-size: 0.85rem;">Assigned</span>`;
+                    }
+                    
+                    const row = `<tr>
+                        <td>#${req.id}</td>
+                        <td>${req.email}</td>
+                        <td>${req.location}</td>
+                        <td>${req.req_type}</td>
+                        <td><span class="status-badge ${statusClass}">${req.status}</span></td>
+                        <td>${actionBtn}</td>
+                    </tr>`;
+                    reqTbody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        } catch (e) {
+            console.error("Error loading requests:", e);
+        }
+    }
+
+    // Admin Reports
+    const repTbody = document.getElementById('admin-reports-tbody');
+    if (repTbody) {
+        try {
+            const res = await fetch('/api/reports');
+            const data = await res.json();
+            repTbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                repTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No barrier reports found.</td></tr>';
+            } else {
+                data.forEach(rep => {
+                    const sevColor = rep.severity === 'High' ? '#ef4444' : (rep.severity === 'Medium' ? '#f59e0b' : '#3b82f6');
+                    const row = `<tr>
+                        <td>${rep.date || 'Today'}</td>
+                        <td>${rep.location}</td>
+                        <td>${rep.issue}</td>
+                        <td><span style="color: ${sevColor}; font-weight: bold;">${rep.severity}</span></td>
+                        <td><span class="status-badge status-pending">${rep.status}</span></td>
+                        <td>
+                            <button class="btn secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="showNotification('Report #${rep.id}', \`<div style='text-align:left; padding:10px;'><p><strong>Reporter:</strong> ${rep.email}</p><p><strong>Location:</strong> ${rep.location}</p><p><strong>Issue:</strong> ${rep.issue}</p></div>\`, 'visibility', '#3b82f6')">View</button>
+                        </td>
+                    </tr>`;
+                    repTbody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        } catch (e) {
+            console.error("Error loading reports:", e);
+        }
+    }
+}
+
+window.dispatchRequest = async function(id, btn) {
+    try {
+        const res = await fetch(`/api/requests/${id}/accept`, { method: 'POST' });
+        const result = await res.json();
+        if (result.success) {
+            showNotification('Dispatched', 'Request has been dispatched to the nearest volunteer!', 'send', '#10b981');
+            btn.parentElement.previousElementSibling.innerHTML = '<span class="status-badge status-active">Dispatched</span>';
+            btn.outerHTML = '<span style="color: var(--text-muted); font-size: 0.85rem;">Assigned</span>';
+        }
+    } catch (e) {
+        console.error(e);
+    }
+};
+
+// Call on load
+document.addEventListener('DOMContentLoaded', () => {
+    loadDynamicData();
+});
+
+
+// --- Interactive Volunteer Map ---
+async function initVolunteerMap() {
+    const mapElement = document.getElementById('volunteer-map');
+    if (!mapElement) return;
+
+    // Initialize map centered on Pune, India
+    const map = L.map('volunteer-map').setView([18.5204, 73.8567], 13);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 19
+    }).addTo(map);
+
+    // Custom Icon
+    const alertIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    try {
+        const res = await fetch('/api/requests');
+        const data = await res.json();
+        
+        const feedContainer = document.getElementById('live-requests-feed');
+        feedContainer.innerHTML = '';
+        
+        // Filter only pending requests
+        const pending = data.filter(r => r.status === 'Pending');
+        
+        if (pending.length === 0) {
+            feedContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 50px;">No urgent requests right now.</p>';
+            return;
+        }
+
+        // Add markers and feed items
+        pending.forEach((req, index) => {
+            // Generate a slight random offset around Pune for mock coordinates
+            const lat = 18.5204 + (Math.random() - 0.5) * 0.05;
+            const lng = 73.8567 + (Math.random() - 0.5) * 0.05;
+            
+            // Add Marker
+            const marker = L.marker([lat, lng], {icon: alertIcon}).addTo(map);
+            marker.bindPopup(`<b>${req.req_type}</b><br>${req.location}<br><button onclick="dispatchRequest(${req.id}, this)" style="margin-top:8px; background:#10b981; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">Accept Job</button>`);
+
+            // Add Feed Card
+            const card = `<div class="card" style="padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <h4 style="margin-bottom: 5px; color: #ef4444; font-size: 1rem;">${req.req_type}</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;"><strong>Loc:</strong> ${req.location}</p>
+                <button class="btn" onclick="dispatchRequest(${req.id}, this)" style="padding: 6px 12px; font-size: 0.85rem; width: 100%; background: #16a34a;">Accept Request</button>
+            </div>`;
+            feedContainer.insertAdjacentHTML('beforeend', card);
+        });
+
+    } catch (e) {
+        console.error("Failed to load map data:", e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('volunteer-map')) {
+        setTimeout(initVolunteerMap, 300); // slight delay for DOM sizing
+    }
+});
