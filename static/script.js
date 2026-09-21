@@ -122,9 +122,39 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
             if (form.id === 'search-accessibility') {
                 showNotification("Scanning...", "Querying OpenStreetMap dataset for verified accessible locations in that area. (Mock Data)", "map", "#3b82f6");
                 return;
+            } else if (form.id === 'directory-form') {
+                const data = {
+                    name: document.getElementById('dir-name').value,
+                    feature: document.getElementById('dir-feature').value
+                };
+                try {
+                    await fetch('/api/directory', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                } catch(e) {}
+                showNotification('Success!', 'Directory updated securely in the database.', 'check_circle', '#10b981');
+                form.reset();
+                return;
+            }
             } else if (form.id === 'volunteer-form') {
                 const formData = new FormData(form);
-                const email = formData.get('email') || 'volunteer@nss.org';
+                const data = {
+                    name: formData.get('name') || 'Anonymous',
+                    email: formData.get('email'),
+                    phone: formData.get('phone') || '0000000000',
+                    affiliation: document.getElementById('v-affiliation') ? document.getElementById('v-affiliation').value : 'Unknown',
+                    role: 'General Volunteer'
+                };
+                
+                try {
+                    await fetch('/api/volunteers', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                } catch(e) {}
                 
                 showNotification("Application Submitted!", "Your volunteer application has been sent to the admins for verification. You will receive an email with your credentials once approved.");
                 form.reset();
@@ -496,7 +526,11 @@ async function loadDynamicData() {
             if (data.length === 0) {
                 reqTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No requests found.</td></tr>';
             } else {
+
                 data.forEach(req => {
+                    if (document.getElementById('user-requests-tbody') && req.email !== (localStorage.getItem('able_email') || 'user@citizen.org')) {
+                        return; // Skip if it's the user dashboard and email doesn't match
+                    }
                     const statusClass = req.status === 'Pending' ? 'status-pending' : (req.status === 'Dispatched' ? 'status-active' : 'status-resolved');
                     
                     let actionBtn = '';
@@ -521,6 +555,92 @@ async function loadDynamicData() {
             console.error("Error loading requests:", e);
         }
     }
+
+
+
+    // User History
+    const userHistTbody = document.getElementById('user-history-tbody');
+    if (userHistTbody) {
+        try {
+            const res = await fetch('/api/requests');
+            const data = await res.json();
+            userHistTbody.innerHTML = '';
+            const userEmail = localStorage.getItem('able_email') || 'user@citizen.org';
+            const userHistory = data.filter(r => r.email === userEmail && (r.status === 'Resolved' || r.status === 'Completed' || r.status === 'Dispatched'));
+            
+            if (userHistory.length === 0) {
+                userHistTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No past requests found.</td></tr>';
+            } else {
+                userHistory.forEach(req => {
+                    const row = `<tr>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">#${req.id}</td>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">${req.req_type}</td>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);"><span style="color: #10b981; font-weight: bold;">${req.status}</span></td>
+                    </tr>`;
+                    userHistTbody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        } catch(e) {}
+    }
+
+    // Volunteer History
+    const volHistTbody = document.getElementById('volunteer-history-tbody');
+    if (volHistTbody) {
+        try {
+            const res = await fetch('/api/requests');
+            const data = await res.json();
+            volHistTbody.innerHTML = '';
+            const volHistory = data.filter(r => r.status === 'Dispatched' || r.status === 'Resolved');
+            
+            if (volHistory.length === 0) {
+                volHistTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No past requests fulfilled.</td></tr>';
+            } else {
+                volHistory.forEach(req => {
+                    const row = `<tr>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">#${req.id}</td>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">${req.email}</td>
+                        <td style="padding: 16px; border-bottom: 1px solid var(--border-light);">${req.req_type}</td>
+                    </tr>`;
+                    volHistTbody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        } catch(e) {}
+    }
+
+    // Admin Pending Volunteers
+    const volTbody = document.getElementById('admin-volunteers-tbody');
+    if (volTbody) {
+        try {
+            const res = await fetch('/api/volunteers');
+            const data = await res.json();
+            volTbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                volTbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No pending verifications found.</td></tr>';
+            } else {
+                data.forEach(vol => {
+                    const statusIcon = vol.id_status === 'Valid' ? `<span style='color:#10b981; font-weight: bold;'><span class='material-symbols-outlined' style='font-size: 1rem; vertical-align: middle;'>verified</span> Official Document Scanned</span>` : `<span style='color:#f59e0b; font-weight: bold;'><span class='material-symbols-outlined' style='font-size: 1rem; vertical-align: middle;'>pending_actions</span> Waiting for Review</span>`;
+                    const row = `<tr>
+                        <td>${vol.name}</td>
+                        <td>${vol.email}</td>
+                        <td>${vol.affiliation}</td>
+                        <td>${vol.role}</td>
+                        <td>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button class="btn secondary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="showNotification('ID Verification', \`<div style='text-align:center; padding: 10px;'><img src='dummy_nss_id.jpg' style='border-radius:8px; margin-bottom:15px; border: 1px solid var(--border-light); width: 100%; max-width: 350px;' alt='NSS ID Scan'><br><strong>${vol.name}</strong><br>ID: NSS/TMP/${vol.id}<br>${statusIcon}</div>\`, 'badge', '#3b82f6')">View ID</button>
+                                <button class="btn" style="padding: 6px 12px; font-size: 0.85rem; background: #10b981; border: none;" onclick="approveVolunteer('${vol.email}', this)">Approve</button>
+                                <button class="btn" style="padding: 6px 12px; font-size: 0.85rem; background: #ef4444; border: none;" onclick="rejectVolunteer('${vol.email}', this)">Reject</button>
+                            </div>
+                        </td>
+                    </tr>`;
+                    volTbody.insertAdjacentHTML('beforeend', row);
+                });
+            }
+        } catch (e) {
+            console.error("Error loading volunteers:", e);
+        }
+    }
+}
 
     // Admin Reports
     const repTbody = document.getElementById('admin-reports-tbody');
@@ -641,3 +761,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(initVolunteerMap, 300); // slight delay for DOM sizing
     }
 });
+
+window.rejectVolunteer = async function(email, btnElement) {
+    try {
+        await fetch('/api/reject_volunteer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+        });
+        showNotification('Rejected', 'Application rejected. An email has been sent requesting a clearer ID upload.', 'cancel', '#ef4444');
+        if(btnElement) btnElement.closest('tr').style.display = 'none';
+    } catch(e) {}
+};

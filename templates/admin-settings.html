@@ -299,14 +299,14 @@
                     <h2>Update Accessibility Directory</h2>
                     <p style="color: var(--text-muted); margin-bottom: 20px;">Add verified accessible locations to the database.</p>
                     <div class="card" style="padding: 30px; max-width: 500px;">
-                        <form onsubmit="event.preventDefault(); showNotification('Success!', 'Directory updated securely.', 'check_circle', '#10b981'); this.reset();">
+                        <form id="directory-form">
                             <div style="margin-bottom: 15px;">
                                 <label style="display: block; margin-bottom: 5px;">Location Name</label>
-                                <input type="text" placeholder="E.g. Pune Central Mall" required style="width: 100%;">
+                                <input type="text" id="dir-name" name="dir-name" placeholder="E.g. Pune Central Mall" required style="width: 100%;">
                             </div>
                             <div style="margin-bottom: 20px;">
                                 <label style="display: block; margin-bottom: 5px;">Primary Feature</label>
-                                <select style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border-light); background: var(--bg-surface); color: var(--text-main);">
+                                <select id="dir-feature" name="dir-feature" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid var(--border-light); background: var(--bg-surface); color: var(--text-main);">
                                     <option>Wheelchair Ramp</option>
                                     <option>Elevator</option>
                                     <option>Tactile Paths</option>
