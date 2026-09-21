@@ -1,11 +1,11 @@
+import re
+
 with open('static/script.js', 'r', encoding='utf-8') as f:
     js = f.read()
 
-# Replace \' with ' inside the template literal
-js = js.replace("\\'en\\'", "'en'")
-js = js.replace("\\'मराठी\\'", "'मराठी'")
-js = js.replace("\\'English\\'", "'English'")
+# Fix the syntax error: remove the extra closing brace
+js = js.replace("            }\n            } else if (form.id === 'volunteer-form') {", "            } else if (form.id === 'volunteer-form') {")
 
 with open('static/script.js', 'w', encoding='utf-8') as f:
     f.write(js)
-print('Fixed syntax error!')
+print("Syntax error fixed!")

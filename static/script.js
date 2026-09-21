@@ -146,7 +146,6 @@ window.showNotification = function(title, text, icon="check_circle", color="#10b
                 showNotification('Success!', 'Directory updated securely in the database.', 'check_circle', '#10b981');
                 form.reset();
                 return;
-            }
             } else if (form.id === 'volunteer-form') {
                 const formData = new FormData(form);
                 const data = {
@@ -649,7 +648,6 @@ async function loadDynamicData() {
             console.error("Error loading volunteers:", e);
         }
     }
-}
 
     // Admin Reports
     const repTbody = document.getElementById('admin-reports-tbody');
