@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABLE Project Report</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 40px; }
+        h1 { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; }
+        h2 { color: #2563eb; margin-top: 30px; }
+        h3 { color: #0f172a; }
+        p { margin-bottom: 15px; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
+        .highlight { background-color: #f1f5f9; padding: 15px; border-left: 4px solid #3b82f6; border-radius: 4px; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #dc2626; }
+        @media print {
+            body { padding: 0; }
+            h1 { font-size: 24pt; }
+            h2 { font-size: 18pt; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ABLE: Technical Project Report</h1>
+    <p><strong>Project Name:</strong> ABLE (Awareness, Accessibility, Inclusion)<br>
+    <strong>Domain:</strong> Accessibility Tech & Social Welfare<br>
+    <strong>Architecture:</strong> Client-Server Web Application</p>
+
+    <div class="highlight">
+        <p><strong>Executive Summary:</strong> ABLE is a full-stack web application designed to bridge the gap between citizens with mobility or accessibility needs and verified volunteers. It serves as both a rapid response system for requesting physical assistance and a city-wide tracker for reporting infrastructure barriers.</p>
+    </div>
+
+    <h2>1. System Architecture</h2>
+    <ul>
+        <li><strong>Frontend (Client):</strong> Built with pure HTML5, CSS3, and Vanilla Javascript. It uses asynchronous HTTP requests (<code>fetch</code>) to communicate with the backend. It also utilizes <strong>Leaflet.js</strong> for rendering interactive maps.</li>
+        <li><strong>Backend (Server):</strong> Built using <strong>Python</strong> and the <strong>Flask</strong> micro-framework. It exposes RESTful API endpoints that the frontend consumes.</li>
+        <li><strong>Database:</strong> Uses <strong>SQLite3</strong>, a lightweight file-based relational database (<code>database.db</code>), for secure data persistence.</li>
+    </ul>
+
+    <h2>2. Database Schema (<code>app.py</code>)</h2>
+    <p>The backend initializes five primary SQL tables:</p>
+    <ul>
+        <li><code>users</code>: Stores authenticated users (Admin, Volunteer, Citizen) with their emails, passwords, and access roles.</li>
+        <li><code>requests</code>: Stores assistance requests (location, type of help needed) and tracks their status (<code>Pending</code>, <code>Dispatched</code>, <code>Resolved</code>).</li>
+        <li><code>reports</code>: Stores physical barrier reports (broken ramps, blocked paths) along with their severity level.</li>
+        <li><code>pending_volunteers</code>: A staging table for new volunteers who have registered but have not yet had their IDs verified by an Admin.</li>
+        <li><code>directory</code>: A database of verified accessible locations (e.g., malls with wheelchair ramps).</li>
+    </ul>
+
+    <h2>3. Backend API Endpoints (Flask)</h2>
+    <p>The Python server manages data flow through these primary routes:</p>
+    <ul>
+        <li><code>/api/login</code> (POST): Authenticates users against the <code>users</code> table and returns their assigned role, determining which dashboard they see.</li>
+        <li><code>/api/requests</code> (GET / POST): Fetches all active requests, or allows a citizen to insert a new request into the database.</li>
+        <li><code>/api/reports</code> (GET / POST): Fetches all barrier reports, or allows a citizen to log a new infrastructure issue.</li>
+        <li><code>/api/requests/&lt;id&gt;/accept</code> (POST): Triggered when a Volunteer clicks "Accept Job". It updates the database status of the request from <code>Pending</code> to <code>Dispatched</code>.</li>
+        <li><code>/api/volunteers</code> (GET / POST): Used for the Volunteer Registration form. Submits the user's details and ID to the <code>pending_volunteers</code> table.</li>
+        <li><code>/api/approve_volunteer</code> (POST): Admin-only route. Deletes the applicant from <code>pending_volunteers</code> and securely inserts them into the <code>users</code> table, granting them login access.</li>
+    </ul>
+
+    <h2>4. Frontend Javascript Logic (<code>script.js</code>)</h2>
+    <p>The <code>script.js</code> file acts as the brain of the frontend UI:</p>
+    <ul>
+        <li><strong>Authentication State (localStorage):</strong> When a user logs in, the JS stores <code>able_logged_in</code> and <code>able_role</code> in the browser's local storage. This determines which navigation bar to securely inject into the DOM.</li>
+        <li><strong>Dynamic Data Fetching (<code>loadDynamicData</code>):</strong> When a dashboard loads, this function asynchronously requests data from the backend APIs and dynamically generates the HTML <code>&lt;tr&gt;</code> rows for the tables. It includes logic to filter history tables based on the logged-in user.</li>
+        <li><strong>Interactive Map (<code>initVolunteerMap</code>):</strong> Initializes a Leaflet.js map centered on Pune. It loops through the live <code>Pending</code> requests from the database, generates geographical coordinates, and drops interactive red alert markers on the map.</li>
+        <li><strong>Accessibility Engine:</strong> Handles the high-contrast Dark Mode toggle, text enlargement, and live English-to-Marathi DOM translation by sweeping through HTML elements and replacing text strings.</li>
+    </ul>
+
+    <h2>5. User Roles & Workflows</h2>
+    
+    <h3>A. The Citizen Workflow</h3>
+    <ol>
+        <li>A citizen logs in and navigates to <strong>New Request</strong>.</li>
+        <li>They submit a request for a "Wheelchair Escort" at a specific location.</li>
+        <li>The frontend POSTs this to <code>/api/requests</code>, saving it to SQLite with a <code>Pending</code> status.</li>
+        <li>The citizen tracks the real-time status on their "Active Requests" dashboard.</li>
+    </ol>
+
+    <h3>B. The Volunteer Workflow</h3>
+    <ol>
+        <li>A new student fills out the registration form and uploads their College ID.</li>
+        <li>They are placed in the <code>pending_volunteers</code> queue.</li>
+        <li>Once approved by an Admin, they can log into the <strong>Volunteer Dashboard</strong>.</li>
+        <li>They open the <strong>Nearby Requests</strong> map, see the citizen's red marker, and click "Accept". The backend marks the job as <code>Dispatched</code>.</li>
+        <li>Upon completing enough hours, they can download an automated PDF Certificate of Appreciation.</li>
+    </ol>
+
+    <h3>C. The Admin Workflow</h3>
+    <ol>
+        <li>The Admin acts as the ultimate system moderator.</li>
+        <li>They review the <strong>Pending Verifications</strong> table. Clicking "View ID" pulls up the uploaded ID card. If valid, they click "Approve", which triggers <code>/api/approve_volunteer</code> to officially create the account.</li>
+        <li>They monitor the total volume of barrier reports and dispatch metrics across the city through dynamically updating tables.</li>
+    </ol>
+
+</body>
+</html>

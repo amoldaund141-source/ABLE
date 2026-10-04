@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!document.getElementById('form-modal')) {
         document.body.insertAdjacentHTML('beforeend', `
             <div class="mock-modal-overlay" id="form-overlay"></div>
-            <div class="mock-modal" id="form-modal">
+            <div class="mock-modal" id="form-modal" role="alertdialog" aria-modal="true" aria-live="assertive">
                 <span id="form-modal-icon" class="material-symbols-outlined" style="font-size: 3rem; color: #10b981; margin-bottom: 15px;">check_circle</span>
                 <h3 id="form-modal-title" style="margin-bottom: 10px;">Success!</h3>
                 <p id="form-modal-text">Action completed successfully.</p>
