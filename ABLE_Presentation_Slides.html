@@ -274,98 +274,45 @@
 
         /* Mock Phone Device Frame */
         .phone-mockup {
-            width: 330px;
+            width: 320px;
+            height: 480px;
             background: #ffffff;
-            border: 2.5px solid var(--border-soft);
+            border: 3.5px solid var(--primary-dark);
             border-radius: 36px;
-            padding: 28px 22px;
-            box-shadow: 0 16px 36px rgba(15, 45, 69, 0.08);
+            padding: 12px 10px 14px 10px;
+            box-shadow: 0 16px 36px rgba(15, 45, 69, 0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
             position: relative;
         }
 
         .phone-mockup::before {
             content: "";
-            width: 50px;
+            width: 52px;
             height: 4px;
             background: var(--border-line);
             border-radius: 4px;
-            margin-bottom: 18px;
+            margin-bottom: 8px;
         }
 
-        .mockup-app-title {
-            font-size: 1.65rem;
-            font-weight: 900;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-
-        .mockup-tagline {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 6px;
-        }
-
-        .mockup-subtext {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            line-height: 1.35;
-            margin-bottom: 22px;
-            padding: 0 10px;
-        }
-
-        .mockup-primary-btn {
+        .phone-screen-container {
             width: 100%;
-            background: var(--primary-dark);
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 13px 0;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .mockup-secondary-btn {
-            width: 100%;
-            background: var(--accent-blue);
-            color: #ffffff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 13px 0;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .mockup-card-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            width: 100%;
-        }
-
-        .mockup-mini-card {
-            background: var(--bg-surface);
+            height: 100%;
+            border-radius: 24px;
+            overflow: hidden;
             border: 1px solid var(--border-soft);
-            border-radius: 8px;
-            padding: 14px 6px;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-body);
+            background: #ffffff;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            line-height: 1.25;
-            min-height: 62px;
+        }
+
+        .phone-screen-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
         }
 
         .mockup-footnote {
@@ -576,24 +523,15 @@
             <h2 class="slide-title">Prototype: Home Screen Concept</h2>
 
             <div class="slide2-grid">
-                <!-- Left: Phone Mockup Frame -->
+                <!-- Left: Phone Mockup Frame with Real Site Page -->
                 <div>
                     <div class="phone-mockup">
-                        <div class="mockup-app-title">ABLE</div>
-                        <div class="mockup-tagline">Empowering Accessibility & Inclusion</div>
-                        <div class="mockup-subtext">Assistance, barrier reporting, and resources in one place.</div>
-
-                        <div class="mockup-primary-btn">GET ASSISTANCE</div>
-                        <div class="mockup-secondary-btn">REPORT A BARRIER</div>
-
-                        <div class="mockup-card-row">
-                            <div class="mockup-mini-card">Emergency SOS</div>
-                            <div class="mockup-mini-card">Accessible Directory</div>
-                            <div class="mockup-mini-card">Volunteer Network</div>
+                        <div class="phone-screen-container">
+                            <img src="static/site_phone_screen.png" alt="ABLE Official Website" class="phone-screen-img">
                         </div>
                     </div>
                     <div class="mockup-footnote">
-                        Illustrative interface concept — fully functional with Python Flask & SQLite backend.
+                        Live production interface — ABLE Accessibility & Inclusion Platform.
                     </div>
                 </div>
 
