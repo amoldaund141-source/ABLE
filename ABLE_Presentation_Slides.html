@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABLE - Project Presentation Slides</title>
     <style>
+        :root {
+            /* Official Color Palette extracted directly from ABLE_Final_Presentation.pptx */
+            --primary-dark: #0F2D45;     /* Deep Navy (Primary brand color for headers & cards) */
+            --primary-dark-sub: #123854; /* Midnight Slate */
+            --accent-blue: #2878C8;      /* Ocean Royal Blue (Underlines, active highlights, buttons) */
+            --accent-teal: #2BA68D;      /* Emerald Teal (Active tags, badges, positive metrics) */
+            --accent-gold: #F2B84B;      /* Warm Amber / Notice accent */
+            --bg-page: #e2e8f0;          /* Desktop background for preview */
+            --bg-slide: #ffffff;         /* Slide surface */
+            --bg-surface: #F6F9FC;       /* Off-white ice blue card container */
+            --border-soft: #D7E5F2;      /* Soft ice blue divider & card border */
+            --border-line: #B8C5D0;      /* Muted border line */
+            --text-title: #0F2D45;       /* Deep Navy title */
+            --text-body: #202A33;        /* High-contrast slate body text */
+            --text-muted: #5E6B75;       /* Slate metadata & subtitles */
+            --shadow-subtle: 0 10px 25px rgba(15, 45, 69, 0.09);
+        }
+
+        /* Grayscale / Monochrome alternate mode */
+        body.theme-mono {
+            --primary-dark: #0f172a;
+            --primary-dark-sub: #334155;
+            --accent-blue: #0f172a;
+            --accent-teal: #334155;
+            --accent-gold: #64748b;
+            --bg-surface: #f8fafc;
+            --border-soft: #e2e8f0;
+            --border-line: #cbd5e1;
+            --text-title: #0f172a;
+            --text-body: #1e293b;
+            --text-muted: #64748b;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,14 +45,15 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #e2e8f0;
-            color: #1e293b;
+            font-family: 'Aptos Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 35px;
+            transition: background 0.3s;
         }
 
         /* Top control bar */
@@ -33,21 +67,63 @@
             padding: 14px 24px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .toolbar h1 {
+        .toolbar-info h1 {
             font-size: 1.15rem;
-            color: #0f172a;
+            color: #0F2D45;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .toolbar p {
+        .theme-pill {
+            font-size: 0.72rem;
+            background: #EAF4FF;
+            color: #2878C8;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid #D7E5F2;
+        }
+
+        .toolbar-info p {
             font-size: 0.85rem;
-            color: #64748b;
+            color: #5E6B75;
+            margin-top: 2px;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-theme-toggle {
+            background: #F6F9FC;
+            color: #0F2D45;
+            border: 1.5px solid #D7E5F2;
+            padding: 9px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-theme-toggle:hover {
+            background: #EAF4FF;
+            border-color: #2878C8;
         }
 
         .print-btn {
-            background: #0f172a;
+            background: #0F2D45;
             color: white;
             border: none;
             padding: 10px 22px;
@@ -62,7 +138,7 @@
         }
 
         .print-btn:hover {
-            background: #2563eb;
+            background: #2878C8;
             transform: translateY(-1px);
         }
 
@@ -70,9 +146,10 @@
         .slide {
             width: 1100px;
             height: 680px;
-            background: #ffffff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-            border-radius: 8px;
+            background: var(--bg-slide);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
             padding: 48px 56px 36px 56px;
             display: flex;
             flex-direction: column;
@@ -83,21 +160,21 @@
 
         /* Slide Header */
         .slide-meta {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1.6px;
             text-transform: uppercase;
-            color: #94a3b8;
+            color: var(--accent-blue);
             margin-bottom: 6px;
         }
 
         .slide-title {
-            font-size: 1.95rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #0f172a;
+            color: var(--text-title);
             letter-spacing: -0.5px;
             padding-bottom: 14px;
-            border-bottom: 2px solid #0f172a;
+            border-bottom: 3px solid var(--accent-blue);
             margin-bottom: 26px;
         }
 
@@ -111,19 +188,19 @@
         .hero-statement {
             font-size: 1.25rem;
             line-height: 1.55;
-            color: #1e293b;
+            color: var(--text-body);
             font-weight: 500;
         }
 
         .hero-statement strong {
             font-weight: 800;
-            color: #0f172a;
+            color: var(--text-title);
         }
 
         .sub-statement {
             font-size: 1rem;
             line-height: 1.55;
-            color: #475569;
+            color: var(--text-muted);
         }
 
         .goal-badge-wrap {
@@ -132,13 +209,14 @@
 
         .goal-badge {
             display: inline-block;
-            background: #0f172a;
+            background: var(--primary-dark);
             color: #ffffff;
             font-size: 0.78rem;
             font-weight: 800;
             letter-spacing: 1.2px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 6px;
+            border-left: 4px solid var(--accent-teal);
             text-transform: uppercase;
         }
 
@@ -150,39 +228,40 @@
         }
 
         .pillar-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-soft);
             border-radius: 12px;
             padding: 22px 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            transition: all 0.2s;
         }
 
         .pillar-header {
             display: flex;
             align-items: baseline;
             gap: 10px;
-            border-bottom: 1.5px solid #cbd5e1;
+            border-bottom: 2px solid var(--border-soft);
             padding-bottom: 8px;
         }
 
         .pillar-num {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #0f172a;
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--accent-blue);
         }
 
         .pillar-title {
-            font-size: 1rem;
+            font-size: 1.02rem;
             font-weight: 700;
-            color: #0f172a;
+            color: var(--text-title);
         }
 
         .pillar-desc {
             font-size: 0.88rem;
             line-height: 1.45;
-            color: #475569;
+            color: var(--text-muted);
         }
 
         /* --- SLIDE 2 STYLES: Prototype Home Screen Concept --- */
@@ -197,10 +276,10 @@
         .phone-mockup {
             width: 330px;
             background: #ffffff;
-            border: 2px solid #cbd5e1;
+            border: 2.5px solid var(--border-soft);
             border-radius: 36px;
             padding: 28px 22px;
-            box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 16px 36px rgba(15, 45, 69, 0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -212,29 +291,29 @@
             content: "";
             width: 50px;
             height: 4px;
-            background: #cbd5e1;
+            background: var(--border-line);
             border-radius: 4px;
             margin-bottom: 18px;
         }
 
         .mockup-app-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #0f172a;
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--primary-dark);
             letter-spacing: -0.5px;
             margin-bottom: 4px;
         }
 
         .mockup-tagline {
             font-size: 0.88rem;
-            font-weight: 600;
-            color: #334155;
+            font-weight: 700;
+            color: var(--accent-blue);
             margin-bottom: 6px;
         }
 
         .mockup-subtext {
             font-size: 0.75rem;
-            color: #64748b;
+            color: var(--text-muted);
             line-height: 1.35;
             margin-bottom: 22px;
             padding: 0 10px;
@@ -242,7 +321,7 @@
 
         .mockup-primary-btn {
             width: 100%;
-            background: #334155;
+            background: var(--primary-dark);
             color: #ffffff;
             font-size: 0.85rem;
             font-weight: 700;
@@ -255,7 +334,7 @@
 
         .mockup-secondary-btn {
             width: 100%;
-            background: #475569;
+            background: var(--accent-blue);
             color: #ffffff;
             font-size: 0.85rem;
             font-weight: 700;
@@ -274,12 +353,13 @@
         }
 
         .mockup-mini-card {
-            background: #f1f5f9;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-soft);
             border-radius: 8px;
             padding: 14px 6px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            color: #334155;
+            color: var(--text-body);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -290,8 +370,8 @@
 
         .mockup-footnote {
             margin-top: 14px;
-            font-size: 0.72rem;
-            color: #64748b;
+            font-size: 0.74rem;
+            color: var(--text-muted);
             font-style: italic;
             text-align: left;
         }
@@ -306,8 +386,8 @@
         .focus-heading {
             font-size: 0.95rem;
             font-weight: 800;
-            letter-spacing: 1.2px;
-            color: #475569;
+            letter-spacing: 1.4px;
+            color: var(--accent-blue);
             text-transform: uppercase;
             margin-bottom: 6px;
         }
@@ -322,7 +402,7 @@
         .focus-list li {
             font-size: 1.05rem;
             line-height: 1.5;
-            color: #1e293b;
+            color: var(--text-body);
             display: flex;
             align-items: flex-start;
             gap: 12px;
@@ -330,9 +410,9 @@
 
         .focus-list li::before {
             content: "•";
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             line-height: 1;
-            color: #0f172a;
+            color: var(--accent-teal);
         }
 
         /* Slide Footer */
@@ -340,36 +420,36 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            border-top: 1px solid #f1f5f9;
+            border-top: 1.5px solid var(--border-soft);
             padding-top: 16px;
         }
 
         .footer-brand {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: #64748b;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .footer-brand-logo {
-            width: 18px;
-            height: 18px;
-            background: #0f172a;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-dark);
             color: white;
             border-radius: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 900;
         }
 
         .footer-page-num {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-blue);
         }
 
         /* Print formatting */
@@ -388,6 +468,7 @@
                 width: 100%;
                 height: 100vh;
                 box-shadow: none;
+                border: none;
                 border-radius: 0;
                 page-break-after: always;
                 page-break-inside: avoid;
@@ -400,17 +481,22 @@
 
     <!-- On-screen Toolbar -->
     <div class="toolbar">
-        <div>
-            <h1>ABLE Presentation Slides (Print & PDF Ready)</h1>
-            <p>Formatted to match your project documentation style. Press Print to save directly as a clean PDF.</p>
+        <div class="toolbar-info">
+            <h1>ABLE Presentation Slides <span class="theme-pill">Theme: Navy & Teal (#0F2D45 & #2878C8)</span></h1>
+            <p>Directly synchronized with the color scheme of <strong>ABLE_Final_Presentation.pptx</strong></p>
         </div>
-        <button class="print-btn" onclick="window.print()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
-                <path d="M6 14h12v8H6z"/>
-            </svg>
-            Print / Save as PDF
-        </button>
+        <div class="toolbar-actions">
+            <button class="btn-theme-toggle" onclick="toggleTheme()" id="theme-btn">
+                📄 Switch to Monochrome
+            </button>
+            <button class="print-btn" onclick="window.print()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                    <path d="M6 14h12v8H6z"/>
+                </svg>
+                Print / Save as PDF
+            </button>
+        </div>
     </div>
 
     <!-- ========================================== -->
@@ -534,6 +620,19 @@
             <div class="footer-page-num">ABLE • 08</div>
         </div>
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('theme-btn');
+            body.classList.toggle('theme-mono');
+            if (body.classList.contains('theme-mono')) {
+                btn.innerHTML = '🎨 Switch to Presentation Color Theme';
+            } else {
+                btn.innerHTML = '📄 Switch to Monochrome';
+            }
+        }
+    </script>
 
 </body>
 </html>
