@@ -27,11 +27,27 @@ def init_db():
         c.execute("INSERT INTO users (email, password, role) VALUES ('admin@able.org', 'admin123', 'admin')")
         c.execute("INSERT INTO users (email, password, role) VALUES ('volunteer@nss.org', 'vol123', 'volunteer')")
         c.execute("INSERT INTO users (email, password, role) VALUES ('user@citizen.org', 'user123', 'user')")
+    
+    c.execute("SELECT COUNT(*) FROM requests")
+    if c.fetchone()[0] == 0:
         c.execute("INSERT INTO requests (email, location, req_type, status) VALUES ('user@citizen.org', 'Pune Station, Platform 1', 'Mobility (Wheelchair)', 'Resolved')")
         c.execute("INSERT INTO requests (email, location, req_type, status) VALUES ('user@citizen.org', 'Shivajinagar', 'Visual Assistance', 'Pending')")
         c.execute("INSERT INTO requests (email, location, req_type, status) VALUES ('other@citizen.org', 'Modern College', 'Navigation Guide', 'Dispatched')")
-        c.execute("INSERT INTO pending_volunteers (name, email, phone, affiliation, role, id_status) VALUES ('Sneha Sharma', 'sneha.s@student.org', '9876543210', 'NSS Student', 'On-ground physical assistance', 'Valid')")
-        c.execute("INSERT INTO directory (name, feature, date) VALUES ('Pune Central Mall', 'Wheelchair Ramp', '2026-09-21')")
+    
+    c.execute("SELECT COUNT(*) FROM pending_volunteers")
+    if c.fetchone()[0] == 0:
+        c.execute("INSERT INTO pending_volunteers (name, email, phone, affiliation, role, id_status) VALUES ('Rahul Kumar', 'rahul.k@student.org', '9876543210', 'NSS Volunteer', 'Mobility Assistance', 'Valid')")
+        c.execute("INSERT INTO pending_volunteers (name, email, phone, affiliation, role, id_status) VALUES ('Sneha Sharma', 'sneha.s@student.org', '9876543211', 'College NSS Unit', 'Navigation Guide', 'Valid')")
+    
+    c.execute("SELECT COUNT(*) FROM reports")
+    if c.fetchone()[0] == 0:
+        c.execute("INSERT INTO reports (email, location, issue, severity, status, date) VALUES ('citizen@able.org', 'Deccan Bus Stop', 'Broken wheelchair ramp at entrance', 'High', 'Investigating', '2026-10-20 14:30')")
+        c.execute("INSERT INTO reports (email, location, issue, severity, status, date) VALUES ('user@citizen.org', 'FC Road Metro Station', 'Elevator out of service on Platform 2', 'Medium', 'Investigating', '2026-10-21 10:15')")
+    
+    c.execute("SELECT COUNT(*) FROM directory")
+    if c.fetchone()[0] == 0:
+        c.execute("INSERT INTO directory (name, feature, date) VALUES ('Pune Central Mall', 'Wheelchair Ramp & Tactile Paths', '2026-09-21')")
+        c.execute("INSERT INTO directory (name, feature, date) VALUES ('Sambhaji Park', 'Accessible Restroom & Paved Paths', '2026-09-22')")
     
     conn.commit()
     conn.close()
