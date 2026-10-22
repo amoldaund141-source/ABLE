@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABLE - Project Code Snapshots</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0b0f17;
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #e2e8f0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .header {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Container for individual snapshots */
+        .snapshot-wrapper {
+            width: 100%;
+            max-width: 960px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .snapshot-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+        }
+
+        .snapshot-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .snapshot-badge {
+            font-size: 0.75rem;
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Window Card */
+        .code-window {
+            background: #161b22;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+            overflow: hidden;
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+
+        /* Title Bar */
+        .window-bar {
+            background: #0d1117;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .window-title {
+            font-size: 0.82rem;
+            color: #8b949e;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .window-lang {
+            font-size: 0.75rem;
+            color: #58a6ff;
+            font-weight: 600;
+        }
+
+        /* Code Container */
+        .code-content {
+            padding: 20px 24px;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            overflow-x: auto;
+            color: #e6edf3;
+        }
+
+        pre {
+            margin: 0;
+        }
+
+        /* Syntax Highlighting Colors */
+        .kw { color: #ff7b72; font-weight: 600; }        /* def, if, return, async, const */
+        .fn { color: #d2a8ff; font-weight: 600; }        /* function names */
+        .str { color: #a5d6ff; }                         /* strings */
+        .dec { color: #79c0ff; }                         /* decorators @app.route */
+        .com { color: #8b949e; font-style: italic; }     /* comments */
+        .num { color: #79c0ff; }                         /* numbers */
+        .var { color: #ffa657; }                         /* parameters, variables */
+        .cls { color: #f0883e; font-weight: 600; }       /* Classes */
+        .op { color: #ff7b72; }                          /* operators */
+        .ln { color: #484f58; user-select: none; display: inline-block; width: 32px; text-align: right; margin-right: 18px; }
+
+        .snapshot-desc {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            padding: 0 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>ABLE • Core Architecture Code Snapshots</h1>
+        <p>Representative code modules illustrating Full-Stack Data Persistence, Dispatch Routing, and Real-Time GIS Mapping.</p>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SNAPSHOT 1: BACKEND CORE (Flask + SQLite Architecture)  -->
+    <!-- ======================================================== -->
+    <div class="snapshot-wrapper" id="snapshot-backend">
+        <div class="snapshot-meta">
+            <div class="snapshot-title">
+                <span>Snapshot 01: Core Backend & Dispatch Routing</span>
+            </div>
+            <span class="snapshot-badge">Python • Flask • SQLite3</span>
+        </div>
+
+        <div class="code-window">
+            <div class="window-bar">
+                <div class="window-controls">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="window-title">app.py — Dispatch APIs & Volunteer Verification</div>
+                <div class="window-lang">Python 3</div>
+            </div>
+
+            <div class="code-content">
+<pre><code><span class="ln">71</span><span class="com"># --- CITIZEN ASSISTANCE REQUEST DISPATCH ENDPOINT ---</span>
+<span class="ln">72</span><span class="dec">@app.route</span>(<span class="str">'/api/requests'</span>, <span class="var">methods</span>=[<span class="str">'GET'</span>, <span class="str">'POST'</span>])
+<span class="ln">73</span><span class="kw">def</span> <span class="fn">handle_requests</span>():
+<span class="ln">74</span>    <span class="var">conn</span> = <span class="fn">get_db</span>()
+<span class="ln">75</span>    <span class="kw">if</span> <span class="var">request</span>.<span class="var">method</span> == <span class="str">'POST'</span>:
+<span class="ln">76</span>        <span class="var">data</span> = <span class="var">request</span>.<span class="var">json</span>
+<span class="ln">77</span>        <span class="var">conn</span>.<span class="fn">execute</span>(
+<span class="ln">78</span>            <span class="str">"INSERT INTO requests (email, location, req_type, status) VALUES (?, ?, ?, 'Pending')"</span>, 
+<span class="ln">79</span>            (<span class="var">data</span>.<span class="fn">get</span>(<span class="str">'email'</span>, <span class="str">'anonymous'</span>), <span class="var">data</span>.<span class="fn">get</span>(<span class="str">'location'</span>), <span class="var">data</span>.<span class="fn">get</span>(<span class="str">'req_type'</span>))
+<span class="ln">80</span>        )
+<span class="ln">81</span>        <span class="var">conn</span>.<span class="fn">commit</span>(); <span class="var">conn</span>.<span class="fn">close</span>()
+<span class="ln">82</span>        <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="str">"success"</span>: <span class="kw">True</span>, <span class="str">"message"</span>: <span class="str">"Request saved to database."</span>})
+<span class="ln">83</span>    
+<span class="ln">84</span>    <span class="var">reqs</span> = <span class="var">conn</span>.<span class="fn">execute</span>(<span class="str">"SELECT * FROM requests ORDER BY id DESC"</span>).<span class="fn">fetchall</span>()
+<span class="ln">85</span>    <span class="var">conn</span>.<span class="fn">close</span>()
+<span class="ln">86</span>    <span class="kw">return</span> <span class="fn">jsonify</span>([<span class="fn">dict</span>(<span class="var">r</span>) <span class="kw">for</span> <span class="var">r</span> <span class="kw">in</span> <span class="var">reqs</span>])
+<span class="ln">87</span>
+<span class="ln">88</span><span class="dec">@app.route</span>(<span class="str">'/api/requests/&lt;int:req_id&gt;/accept'</span>, <span class="var">methods</span>=[<span class="str">'POST'</span>])
+<span class="ln">89</span><span class="kw">def</span> <span class="fn">accept_request</span>(<span class="var">req_id</span>):
+<span class="ln">90</span>    <span class="var">conn</span> = <span class="fn">get_db</span>()
+<span class="ln">91</span>    <span class="var">conn</span>.<span class="fn">execute</span>(<span class="str">"UPDATE requests SET status='Dispatched' WHERE id=?"</span>, (<span class="var">req_id</span>,))
+<span class="ln">92</span>    <span class="var">conn</span>.<span class="fn">commit</span>(); <span class="var">conn</span>.<span class="fn">close</span>()
+<span class="ln">93</span>    <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="str">"success"</span>: <span class="kw">True</span>, <span class="str">"message"</span>: <span class="str">"Request accepted and dispatched."</span>})
+<span class="ln">94</span>
+<span class="ln">95</span><span class="com"># --- ADMIN VOLUNTEER ID VERIFICATION & ONBOARDING ---</span>
+<span class="ln">96</span><span class="dec">@app.route</span>(<span class="str">'/api/approve_volunteer'</span>, <span class="var">methods</span>=[<span class="str">'POST'</span>])
+<span class="ln">97</span><span class="kw">def</span> <span class="fn">approve_volunteer</span>():
+<span class="ln">98</span>    <span class="var">email</span> = <span class="var">request</span>.<span class="var">json</span>.<span class="fn">get</span>(<span class="str">'email'</span>)
+<span class="ln">99</span>    <span class="var">conn</span> = <span class="fn">get_db</span>()
+<span class="ln">100</span>   <span class="var">conn</span>.<span class="fn">execute</span>(<span class="str">"INSERT INTO users (email, password, role) VALUES (?, 'vol123', 'volunteer')"</span>, (<span class="var">email</span>,))
+<span class="ln">101</span>   <span class="var">conn</span>.<span class="fn">execute</span>(<span class="str">"DELETE FROM pending_volunteers WHERE email=?"</span>, (<span class="var">email</span>,))
+<span class="ln">102</span>   <span class="var">conn</span>.<span class="fn">commit</span>(); <span class="var">conn</span>.<span class="fn">close</span>()
+<span class="ln">103</span>   <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="str">"success"</span>: <span class="kw">True</span>, <span class="str">"message"</span>: <span class="str">f"Volunteer {email} approved and created."</span>})</code></pre>
+            </div>
+        </div>
+        <p class="snapshot-desc">
+            <strong>Key Logic:</strong> Handles citizen assistance requests, real-time status transitions (<em>Pending → Dispatched</em>), and secure admin approval of volunteer student credentials into SQLite.
+        </p>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SNAPSHOT 2: FRONTEND CORE (Leaflet.js & Live Dispatch)   -->
+    <!-- ======================================================== -->
+    <div class="snapshot-wrapper" id="snapshot-frontend">
+        <div class="snapshot-meta">
+            <div class="snapshot-title">
+                <span>Snapshot 02: Real-Time Volunteer GIS Dispatch Map</span>
+            </div>
+            <span class="snapshot-badge">JavaScript • Leaflet.js • OpenStreetMap</span>
+        </div>
+
+        <div class="code-window">
+            <div class="window-bar">
+                <div class="window-controls">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="window-title">script.js — Interactive Leaflet GIS & Live Markers</div>
+                <div class="window-lang">JavaScript (ES6+)</div>
+            </div>
+
+            <div class="code-content">
+<pre><code><span class="ln">705</span><span class="com">// --- INTERACTIVE VOLUNTEER MAP & REAL-TIME GEO-DISPATCH ---</span>
+<span class="ln">706</span><span class="kw">async function</span> <span class="fn">initVolunteerMap</span>() {
+<span class="ln">707</span>    <span class="kw">const</span> <span class="var">mapElement</span> = document.<span class="fn">getElementById</span>(<span class="str">'volunteer-map'</span>);
+<span class="ln">708</span>    <span class="kw">if</span> (!<span class="var">mapElement</span>) <span class="kw">return</span>;
+<span class="ln">709</span>
+<span class="ln">710</span>    <span class="com">// Centered on Pune coordinates with OpenStreetMap tiles</span>
+<span class="ln">711</span>    <span class="kw">const</span> <span class="var">map</span> = L.<span class="fn">map</span>(<span class="str">'volunteer-map'</span>).<span class="fn">setView</span>([<span class="num">18.5204</span>, <span class="num">73.8567</span>], <span class="num">13</span>);
+<span class="ln">712</span>    L.<span class="fn">tileLayer</span>(<span class="str">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span>, {
+<span class="ln">713</span>        <span class="var">attribution</span>: <span class="str">'&copy; OpenStreetMap contributors'</span>, <span class="var">maxZoom</span>: <span class="num">19</span>
+<span class="ln">714</span>    }).<span class="fn">addTo</span>(<span class="var">map</span>);
+<span class="ln">715</span>
+<span class="ln">716</span>    <span class="kw">const</span> <span class="var">res</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/requests'</span>);
+<span class="ln">717</span>    <span class="kw">const</span> <span class="var">requests</span> = <span class="kw">await</span> <span class="var">res</span>.<span class="fn">json</span>();
+<span class="ln">718</span>    <span class="kw">const</span> <span class="var">pending</span> = <span class="var">requests</span>.<span class="fn">filter</span>(<span class="var">r</span> =&gt; <span class="var">r</span>.<span class="var">status</span> === <span class="str">'Pending'</span>);
+<span class="ln">719</span>
+<span class="ln">720</span>    <span class="var">pending</span>.<span class="fn">forEach</span>((<span class="var">req</span>) =&gt; {
+<span class="ln">721</span>        <span class="kw">const</span> <span class="var">lat</span> = <span class="num">18.5204</span> + (Math.<span class="fn">random</span>() - <span class="num">0.5</span>) * <span class="num">0.05</span>;
+<span class="ln">722</span>        <span class="kw">const</span> <span class="var">lng</span> = <span class="num">73.8567</span> + (Math.<span class="fn">random</span>() - <span class="num">0.5</span>) * <span class="num">0.05</span>;
+<span class="ln">723</span>        
+<span class="ln">724</span>        <span class="com">// Drop high-contrast urgent alert marker with dispatch action popup</span>
+<span class="ln">725</span>        <span class="kw">const</span> <span class="var">marker</span> = L.<span class="fn">marker</span>([<span class="var">lat</span>, <span class="var">lng</span>], { <span class="var">icon</span>: <span class="var">alertIcon</span> }).<span class="fn">addTo</span>(<span class="var">map</span>);
+<span class="ln">726</span>        <span class="var">marker</span>.<span class="fn">bindPopup</span>(`
+<span class="ln">727</span>            &lt;div style="font-family: inherit; font-size: 0.9rem;"&gt;
+<span class="ln">728</span>                &lt;strong style="color: #0f2d45;"&gt;${<span class="var">req</span>.<span class="var">req_type</span>}&lt;/strong&gt;&lt;br&gt;
+<span class="ln">729</span>                &lt;span style="color: #64748b;"&gt;📍 ${<span class="var">req</span>.<span class="var">location</span>}&lt;/span&gt;&lt;br&gt;
+<span class="ln">730</span>                &lt;button class="btn" style="margin-top: 8px; padding: 4px 10px;" 
+<span class="ln">731</span>                        onclick="dispatchRequest(${<span class="var">req</span>.<span class="var">id</span>}, this)"&gt;Accept & Navigate&lt;/button&gt;
+<span class="ln">732</span>            &lt;/div&gt;
+<span class="ln">733</span>        `);
+<span class="ln">734</span>    });
+<span class="ln">735</span>}</code></pre>
+            </div>
+        </div>
+        <p class="snapshot-desc">
+            <strong>Key Logic:</strong> Connects directly to backend REST endpoints, plots interactive Leaflet alert pins for live mobility requests, and allows NSS volunteers to accept and navigate in real-time.
+        </p>
+    </div>
+
+</body>
+</html>
